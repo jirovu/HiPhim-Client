@@ -4,5 +4,5 @@ export class User {
     password?: string;
     name?: string;
     urlAvt?: string;
-    roles?: Array<string>;
+    roles?: Array<string> = ["user"];
 }

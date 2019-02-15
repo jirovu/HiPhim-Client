@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FormComponent } from './form/form.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
-  { path: '**', component: FormComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', component: NotfoundComponent }
 ];
 
 @NgModule({

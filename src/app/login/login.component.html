@@ -1,17 +1,18 @@
 <mat-card>
   <div *ngIf="!token" class="form-login">
-    <h1 style="text-align: center">Login</h1>
+    <img src="../../assets/logo.jpg" alt="" srcset="">
     <form class="example-form" (ngSubmit)="onLoginSubmit()">
       <mat-form-field class="example-full-width">
-        <input type="text" name="username" [(ngModel)]="username" matInput placeholder="Username">
+        <input type="text" name="username" [(ngModel)]="user.username" required matInput placeholder="Username">
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
-        <input type="password" name="password" [(ngModel)]="password" matInput placeholder="Password">
+        <input type="password" name="password" [(ngModel)]="user.password" required matInput placeholder="Password">
       </mat-form-field>
 
-      <button type="submit" [disabled]="!username || !password" mat-button>LOGIN</button>
+      <button type="submit" [disabled]="!user.username || !user.password" mat-button><b>LOGIN</b></button>
     </form>
+    <a [routerLink]="[ '/register' ]" routerLinkActive="active">Register</a>
   </div>
 
   <div *ngIf="token" class="form-home">

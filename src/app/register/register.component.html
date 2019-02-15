@@ -1,0 +1,21 @@
+<mat-card>
+  <div class="form-login">
+    <img src="../../assets/logo.jpg" alt="" srcset="">
+    <form class="example-form" (ngSubmit)="onSubmit()">
+      <mat-form-field class="example-full-width">
+        <input type="text" name="username" [(ngModel)]="user.username" required matInput placeholder="Username">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input type="password" name="password" [(ngModel)]="user.password" required matInput placeholder="Password">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input type="text" name="name" [(ngModel)]="user.name" matInput placeholder="Name">
+      </mat-form-field>
+
+      <button type="submit" [disabled]="!user.username || !user.password" mat-button><b>REGISTER</b></button>
+    </form>
+    <a [routerLink]="[ '/login' ]" routerLinkActive="active">Login</a>
+  </div>
+</mat-card>

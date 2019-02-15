@@ -2,17 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { RestapiService } from '../services/restapi/restapi.service';
 import { User } from '../models/User';
 
-
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class FormComponent implements OnInit {
-
+export class LoginComponent implements OnInit {
   token: string;
-  username: string;
-  password: string;
+  user = new User();
 
   constructor(public restapi: RestapiService) { }
 
@@ -20,11 +17,7 @@ export class FormComponent implements OnInit {
   }
 
   onLoginSubmit() {
-    var user = new User();
-    user.username = this.username;
-    user.password = this.password;
-
-    this.restapi.getToken(user)
+    this.restapi.getToken(this.user)
       .subscribe(res => {
         this.token = res;
         localStorage.setItem('token', this.token);

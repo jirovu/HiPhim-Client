@@ -9,12 +9,12 @@
 }
 
 .mat-card {
-  width: 400px;
+  width: 350px;
   margin: 10px auto;
 }
 
 .mat-button {
   width: 100%;
   padding: 5px;
-  background-color: violet;
+  background-color: #85CB2A;
 }
