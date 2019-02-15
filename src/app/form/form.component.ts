@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RestapiService } from '../services/restapi/restapi.service';
+import { User } from '../models/User';
 
 
 @Component({
@@ -19,7 +20,11 @@ export class FormComponent implements OnInit {
   }
 
   onLoginSubmit() {
-    this.restapi.getToken({ "username": this.username, "password": this.password })
+    var user = new User();
+    user.username = this.username;
+    user.password = this.password;
+
+    this.restapi.getToken(user)
       .subscribe(res => {
         this.token = res;
         localStorage.setItem('token', this.token);

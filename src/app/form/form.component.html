@@ -10,7 +10,7 @@
         <input type="password" name="password" [(ngModel)]="password" matInput placeholder="Password">
       </mat-form-field>
 
-      <button type="submit" mat-button>LOGIN</button>
+      <button type="submit" [disabled]="!username || !password" mat-button>LOGIN</button>
     </form>
   </div>
 
@@ -21,7 +21,7 @@
         <input type="text" name="text" matInput placeholder="Token" value="{{token}}">
       </mat-form-field>
 
-      <button type="submit" mat-button>HOME</button>
+      <button type="submit" [disabled]="!token" mat-button>HOME</button>
     </form>
   </div>
 </mat-card>
