@@ -1,0 +1,27 @@
+<mat-card>
+  <div *ngIf="!token" class="form-login">
+    <h1 style="text-align: center">Login</h1>
+    <form class="example-form" (ngSubmit)="onLoginSubmit()">
+      <mat-form-field class="example-full-width">
+        <input type="text" name="username" [(ngModel)]="username" matInput placeholder="Username">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <input type="password" name="password" [(ngModel)]="password" matInput placeholder="Password">
+      </mat-form-field>
+
+      <button type="submit" mat-button>LOGIN</button>
+    </form>
+  </div>
+
+  <div *ngIf="token" class="form-home">
+    <h1 style="text-align: center">Home</h1>
+    <form class="example-form" (ngSubmit)="onHomeSubmit()">
+      <mat-form-field class="example-full-width">
+        <input type="text" name="text" matInput placeholder="Token" value="{{token}}">
+      </mat-form-field>
+
+      <button type="submit" mat-button>HOME</button>
+    </form>
+  </div>
+</mat-card>
