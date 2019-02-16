@@ -2,26 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestapiService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private cookieService: CookieService) { }
 
-  public getData(token: string): Observable<any> {
+  public getData(): Observable<any> {
     var httpOptions: any = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.cookieService.get('JWT-TOKEN')}`,
       })
     };
-    if (token) {
-      httpOptions = {
-        headers: new HttpHeaders({
-          'Authorization': `Bearer ${localStorage.getItem('token')}`,
-        })
-      };
-    }
     return this.http.get('http://localhost:1010/user/greet', {
       headers: httpOptions.headers,
       withCredentials: true,

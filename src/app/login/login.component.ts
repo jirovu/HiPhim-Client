@@ -19,13 +19,12 @@ export class LoginComponent implements OnInit {
   onLoginSubmit() {
     this.restapi.getToken(this.user)
       .subscribe(res => {
-        this.token = res;
-        localStorage.setItem('token', this.token);
+        console.log(res);
       })
   }
 
   onHomeSubmit() {
-    this.restapi.getData(this.token)
+    this.restapi.getData()
       .subscribe(res => alert(`Data : ${res}`));
   }
 

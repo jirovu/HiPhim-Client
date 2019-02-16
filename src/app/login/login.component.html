@@ -1,5 +1,5 @@
 <mat-card>
-  <div *ngIf="!token" class="form-login">
+  <div class="form-login">
     <img src="../../assets/logo.jpg" alt="" srcset="">
     <form class="example-form" (ngSubmit)="onLoginSubmit()">
       <mat-form-field class="example-full-width">
@@ -10,19 +10,9 @@
         <input type="password" name="password" [(ngModel)]="user.password" required matInput placeholder="Password">
       </mat-form-field>
 
-      <button type="submit" [disabled]="!user.username || !user.password" mat-button><b>LOGIN</b></button>
+      <button type="submit" mat-button><b>LOGIN</b></button>
     </form>
     <a [routerLink]="[ '/register' ]" routerLinkActive="active">Register</a>
-  </div>
-
-  <div *ngIf="token" class="form-home">
-    <h1 style="text-align: center">Home</h1>
-    <form class="example-form" (ngSubmit)="onHomeSubmit()">
-      <mat-form-field class="example-full-width">
-        <input type="text" name="text" matInput placeholder="Token" value="{{token}}">
-      </mat-form-field>
-
-      <button type="submit" [disabled]="!token" mat-button>HOME</button>
-    </form>
+    <button (click)="onHomeSubmit()" type="submit" mat-button>SHOW HOME</button>
   </div>
 </mat-card>
