@@ -3,7 +3,7 @@
     <img src="../../assets/logo.jpg" alt="" srcset="">
     <form class="example-form" (ngSubmit)="onLoginSubmit()">
       <mat-form-field class="example-full-width">
-        <input type="text" name="username" [(ngModel)]="user.username" required matInput placeholder="Username">
+        <input type="email" name="email" [(ngModel)]="user.email" required matInput placeholder="Email">
       </mat-form-field>
 
       <mat-form-field class="example-full-width">
@@ -13,6 +13,8 @@
       <button type="submit" mat-button><b>LOGIN</b></button>
     </form>
     <a [routerLink]="[ '/register' ]" routerLinkActive="active">Register</a>
+    <br>
+    <a [routerLink]="[ '/forgot-password' ]" routerLinkActive="active">Forgot Password</a>
     <button (click)="onHomeSubmit()" type="submit" mat-button>SHOW HOME</button>
   </div>
 </mat-card>

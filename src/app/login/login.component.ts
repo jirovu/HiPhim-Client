@@ -10,6 +10,7 @@ import { User } from '../models/User';
 export class LoginComponent implements OnInit {
   token: string;
   user = new User();
+  isLoginValid: boolean = false;
 
   constructor(public restapi: RestapiService) { }
 
@@ -19,8 +20,12 @@ export class LoginComponent implements OnInit {
   onLoginSubmit() {
     this.restapi.getToken(this.user)
       .subscribe(res => {
-        console.log(res);
-      })
+        if(res){
+          alert('Login successfully');
+        } else {
+          alert('Failed');
+        }
+      });
   }
 
   onHomeSubmit() {
