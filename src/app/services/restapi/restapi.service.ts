@@ -29,11 +29,12 @@ export class RestapiService {
 
   public getToken(data: any): Observable<any> {
     return this.http.post('http://localhost:1010/user/login'
-      , data);
+      , data, {
+        responseType: 'text'
+      });
   }
 
   public registerUser(data: User): Observable<boolean> {
-
     return this.http.post<boolean>('http://localhost:1010/user/register', data);
   }
 
