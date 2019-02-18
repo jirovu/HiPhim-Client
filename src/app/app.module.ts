@@ -6,7 +6,7 @@ import {
   MatInputModule
 } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CookieService } from 'ngx-cookie-service';
@@ -22,6 +22,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
+import { HttpInterceptorService } from './services/http-interceptor/http-interceptor.service';
 
 
 @NgModule({
@@ -50,7 +51,14 @@ import { UserComponent } from './user/user.component';
     MatProgressBarModule,
     MatSnackBarModule
   ],
-  providers: [CookieService],
+  providers: [
+    CookieService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
