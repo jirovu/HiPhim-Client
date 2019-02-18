@@ -23,6 +23,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { HttpInterceptorService } from './services/http-interceptor/http-interceptor.service';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { HttpInterceptorService } from './services/http-interceptor/http-interce
     MatTabsModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatListModule,
+    MatGridListModule
   ],
   providers: [
     CookieService,

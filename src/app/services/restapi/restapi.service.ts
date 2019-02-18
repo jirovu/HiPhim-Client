@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { Supervisor } from 'src/app/models/Supervisor';
+import { Movie } from 'src/app/models/Movie';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +17,9 @@ export class RestapiService {
     });
   }
 
-  public getToken(data: any): Observable<any> {
+  public login(data: any): Observable<any> {
     return this.http.post('http://localhost:1010/user/login'
-      , data, {
-        responseType: 'text'
-      });
+      , data);
   }
 
   public registerUser(data: User): Observable<boolean> {
@@ -39,5 +38,9 @@ export class RestapiService {
 
   public changePassword(password: string, identifyCode: string): Observable<boolean> {
     return this.http.post<boolean>('http://localhost:1010/user/change-password', { password, identifyCode });
+  }
+
+  public getAllMovies(): Observable<Array<Movie>>{
+    return this.http.get<Array<Movie>>('http://localhost:1010/home');
   }
 }

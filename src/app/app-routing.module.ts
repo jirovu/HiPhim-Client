@@ -6,6 +6,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
+import { Movie } from './models/Movie';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },

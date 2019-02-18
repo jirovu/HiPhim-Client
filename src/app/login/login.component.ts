@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { RestapiService } from '../services/restapi/restapi.service';
 import { User } from '../models/User';
 import { MatSnackBar } from '@angular/material';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Movie } from '../models/Movie';
 
 @Component({
   selector: 'app-login',
@@ -18,24 +19,16 @@ export class LoginComponent implements OnInit {
 
   constructor(public restapi: RestapiService,
     private snackBar: MatSnackBar,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
   }
 
   onLoginSubmit() {
-    this.restapi.getToken(this.user)
+    this.restapi.login(this.user)
       .subscribe(res => {
-        console.log(res);
-        this.role = res;
-        this.status = 200;
-
-        if(this.role == 'admin'){
-          this.router.navigate(['admin-page'])
-        }else {
-          this.router.navigate(['user-page'])
-        }
-
+        this.router.navigate(['admin-page'])
         this.snackBar.open('Login successfully', 'Ok', {
           duration: 3000,
         });
