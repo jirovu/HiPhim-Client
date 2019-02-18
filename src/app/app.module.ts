@@ -25,6 +25,8 @@ import { UserComponent } from './user/user.component';
 import { HttpInterceptorService } from './services/http-interceptor/http-interceptor.service';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatListModule } from '@angular/material/list';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -36,6 +38,8 @@ import { MatListModule } from '@angular/material/list';
     ForgotPasswordComponent,
     AdminComponent,
     UserComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
