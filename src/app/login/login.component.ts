@@ -41,9 +41,4 @@ export class LoginComponent implements OnInit {
         });
   }
 
-  onHomeSubmit() {
-    this.restapi.getData()
-      .subscribe(res => alert(`Data : ${res}`));
-  }
-
 }

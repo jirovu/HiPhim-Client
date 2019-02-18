@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/User';
 import { RestapiService } from '../services/restapi/restapi.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,14 +12,15 @@ export class RegisterComponent implements OnInit {
 
   user = new User();
 
-  constructor(private restapi: RestapiService) { }
+  constructor(private restapi: RestapiService,
+    private router: Router) { }
 
   ngOnInit() {
   }
 
   onSubmit() {
     this.restapi.registerUser(this.user)
-      .subscribe(res => alert(res));
+      .subscribe(res => this.router.navigate(['login']));
   }
 
 }

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark bg-dark mb-5">
-  <a class="navbar-brand text-success" href="/">Logo HiPhim</a>
+  <h1 class="title-web"><a class="navbar-brand text-success" [routerLink]="[ '' ]">HiPhim</a></h1>
   <div class="navbar-expand ml-auto navbar-nav">
     <div class="navbar-nav">
       <form class="form-inline my-2 my-lg-0">
@@ -8,8 +8,8 @@
       </form>
       <div class="navbar-expand mr-auto">
         <div class="navbar-nav">
-          <a class="nav-item nav-link text-success" href="#">Register</a>
-          <a class="nav-item nav-link text-success" href="#">Login</a>
+          <a class="nav-item nav-link text-success" [routerLink]="[ '/register' ]" routerLinkActive="active">Register</a>
+          <a class="nav-item nav-link text-success" [routerLink]="[ '/login' ]" routerLinkActive="active">Login</a>
         </div>
       </div>
     </div>

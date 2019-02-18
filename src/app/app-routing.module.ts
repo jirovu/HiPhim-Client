@@ -28,7 +28,7 @@ const routes: Routes = [
     }
   },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'admin-page', pathMatch: 'full' },
   { path: '**', component: NotfoundComponent }
 ];
 
