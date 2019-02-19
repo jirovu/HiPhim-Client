@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
     private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.data.subscribe(data => this.email = data);
+    this.dataService.email.subscribe(email => this.email = email);
   }
 
 }

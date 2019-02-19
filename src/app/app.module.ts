@@ -28,6 +28,7 @@ import { MatListModule } from '@angular/material/list';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
+import { PublicComponent } from './public/public.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { HomeComponent } from './home/home.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
+    PublicComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
 import { AdminGuardService } from './services/admin-guard/admin-guard.service';
 import { UserGuardService } from './services/user-guard/user-guard.service';
+import { PublicComponent } from './public/public.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -35,6 +36,16 @@ const routes: Routes = [
           {
             email: 'admin@hiphim.com'
           }
+        }
+      ]
+  },
+  {
+    path: 'watch',
+    children:
+      [
+        {
+          path: ':userId',
+          component: PublicComponent
         }
       ]
   },

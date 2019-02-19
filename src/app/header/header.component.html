@@ -8,7 +8,7 @@
       </form>
       <div class="navbar-expand mr-auto">
         <div class="navbar-nav">
-          <a class="nav-item nav-link text-success" [routerLink]="[ '/register' ]"
+          <a *ngIf="!email" class="nav-item nav-link text-success" [routerLink]="[ '/register' ]"
             routerLinkActive="active">Register</a>
           <a *ngIf="!email" class="nav-item nav-link text-success" [routerLink]="[ '/login' ]"
             routerLinkActive="active">Login</a>

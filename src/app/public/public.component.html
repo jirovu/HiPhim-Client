@@ -1,0 +1,4 @@
+<div class="container" *ngIf="movie">
+    <h1 *ngIf="movie" style="color:red">{{movie.name}}</h1>
+    <video width="100%" src="{{movie.url}}" autoplay controls></video>
+</div>

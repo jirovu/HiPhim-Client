@@ -16,8 +16,12 @@ export class AuthService {
   }
 
   public getEmailFromToken(): string {
-    const token = this.cookieService.get('JWT-TOKEN');
-    const tokenPlayload = this.jwtHelper.decodeToken(token);
-    return tokenPlayload.sub;
+    try {
+      const token = this.cookieService.get('JWT-TOKEN');
+      const tokenPlayload = this.jwtHelper.decodeToken(token);
+      return tokenPlayload.sub;
+    } catch (e) {
+      return null;
+    }
   }
 }

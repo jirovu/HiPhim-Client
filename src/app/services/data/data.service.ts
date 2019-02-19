@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Movie } from 'src/app/models/Movie';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  private behaviorSubject = new BehaviorSubject<any>(null);
-  data = this.behaviorSubject.asObservable();
+  private emailBehaviorSubject = new BehaviorSubject<any>(null);
+  email = this.emailBehaviorSubject.asObservable();
 
   constructor() {
   }
 
   public shareEmail(email: string) {
-    this.behaviorSubject.next(email);
+    this.emailBehaviorSubject.next(email);
   }
 }

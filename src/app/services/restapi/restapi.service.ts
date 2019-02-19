@@ -40,7 +40,11 @@ export class RestapiService {
     return this.http.post<boolean>('http://localhost:1010/user/change-password', { password, identifyCode });
   }
 
-  public getAllMovies(): Observable<Array<Movie>>{
+  public getAllMovies(): Observable<Array<Movie>> {
     return this.http.get<Array<Movie>>('http://localhost:1010/home');
+  }
+
+  public getMovie(url: string): Observable<Movie> {
+    return this.http.get<Movie>(`http://localhost:1010/home/personal${url}`);
   }
 }
