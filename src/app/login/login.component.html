@@ -1,6 +1,6 @@
 <mat-card>
   <div class="form-login">
-    <img src="../../assets/logo.jpg" alt="" srcset="">
+    <img src="../../assets/logo.jpg" width="100%" alt="" srcset="">
     <form class="example-form" (ngSubmit)="onLoginSubmit()">
       <mat-form-field class="example-full-width">
         <input type="email" name="email" [(ngModel)]="user.email" required matInput placeholder="Email">
@@ -16,5 +16,3 @@
     <a [routerLink]="[ '/forgot-password' ]" routerLinkActive="active">Forgot Password</a>
   </div>
 </mat-card>
-
-<app-notfound></app-notfound>

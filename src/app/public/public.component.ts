@@ -17,7 +17,7 @@ export class PublicComponent implements OnInit {
   ngOnInit() {
     var url = this.router.url.substring("/watch".length);
     this.restApi.getMovie(url)
-      .subscribe(res => this.movie = res);
+      .subscribe(res => {console.log(res);this.movie = res});
   }
 
 }

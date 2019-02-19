@@ -2,7 +2,8 @@ export class Movie{
     id: string;
     userId: string;
     name: string;
-    desciption: string;
+    description: string;
     url: string;
+    category: string;
     approved: boolean;
 }
