@@ -12,13 +12,12 @@
             routerLinkActive="active">Register</a>
           <a *ngIf="!email" class="nav-item nav-link text-success" [routerLink]="[ '/login' ]"
             routerLinkActive="active">Login</a>
-          <div class="dropdown">
+          <div *ngIf="email" class="dropdown">
             <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown">
-              <a *ngIf="email" class="text-white" style="text-decoration: none;" [routerLink]="[ '/personal/user' ]"
-                routerLinkActive="active">{{email}}</a>
+              <a>{{email}}</a>
             </button>
             <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" href="#">Profile</a>
+              <a class="dropdown-item" style="text-decoration: none;" [routerLink]="[ '/personal/user' ]">Profile</a>
               <a class="dropdown-item" href="#">Logout</a>
             </div>
           </div>
