@@ -9,12 +9,10 @@ import { Observable } from 'rxjs';
 export class HttpInterceptorService implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     var token = this.cookieService.get('JWT-TOKEN');
-    console.log(token);
     var newHeader = req.clone({
       withCredentials: true
     });
     if (token) {
-      console.log(token);
       var newHeader = req.clone({
         headers: req.headers.set('Authorization', `Bearer ${token}`)
       });

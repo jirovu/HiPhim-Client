@@ -8,8 +8,12 @@
       </form>
       <div class="navbar-expand mr-auto">
         <div class="navbar-nav">
-          <a class="nav-item nav-link text-success" [routerLink]="[ '/register' ]" routerLinkActive="active">Register</a>
-          <a class="nav-item nav-link text-success" [routerLink]="[ '/login' ]" routerLinkActive="active">Login</a>
+          <a class="nav-item nav-link text-success" [routerLink]="[ '/register' ]"
+            routerLinkActive="active">Register</a>
+          <a *ngIf="!email" class="nav-item nav-link text-success" [routerLink]="[ '/login' ]"
+            routerLinkActive="active">Login</a>
+          <a *ngIf="email" class="nav-item nav-link text-success" [routerLink]="[ '/personal/user' ]"
+            routerLinkActive="active">{{email}}</a>
         </div>
       </div>
     </div>

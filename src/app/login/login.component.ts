@@ -3,7 +3,9 @@ import { RestapiService } from '../services/restapi/restapi.service';
 import { User } from '../models/User';
 import { MatSnackBar } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Movie } from '../models/Movie';
+import { CookieService } from 'ngx-cookie-service';
+import { DataService } from '../services/data/data.service';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -20,15 +22,19 @@ export class LoginComponent implements OnInit {
   constructor(public restapi: RestapiService,
     private snackBar: MatSnackBar,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private cookieService: CookieService,
+    private dataService: DataService,
+    private authService: AuthService) { }
 
   ngOnInit() {
   }
 
   onLoginSubmit() {
+    this.cookieService.deleteAll();
     this.restapi.login(this.user)
       .subscribe(res => {
-        this.router.navigate(['admin-page'])
+        this.dataService.shareEmail(this.authService.getEmailFromToken());
+        this.router.navigate(['personal/user'])
         this.snackBar.open('Login successfully', 'Ok', {
           duration: 3000,
         });
@@ -36,7 +42,7 @@ export class LoginComponent implements OnInit {
         err => {
           this.status = err.status;
           this.snackBar.open(`Failed login ${this.status}`, 'Ok', {
-            duration: 2000,
+            duration: 3000,
           });
         });
   }

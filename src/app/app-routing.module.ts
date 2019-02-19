@@ -6,29 +6,40 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
-import { Movie } from './models/Movie';
+import { HomeComponent } from './home/home.component';
+import { AdminGuardService } from './services/admin-guard/admin-guard.service';
+import { UserGuardService } from './services/user-guard/user-guard.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'home', component: HomeComponent },
   {
-    path: 'admin-page',
-    component: AdminComponent,
-    canActivate: [],
-    data: {
-      role: 'admin'
-    }
-  },
-  {
-    path: 'user-page',
-    component: UserComponent,
-    canActivate: [],
-    data: {
-      role: 'user'
-    }
+    path: 'personal',
+    children:
+      [
+        {
+          path: 'admin',
+          component: AdminComponent,
+          canActivate: [AdminGuardService],
+          data:
+          {
+            email: 'admin@hiphim.com'
+          }
+        },
+        {
+          path: 'user',
+          component: UserComponent,
+          canActivate: [UserGuardService],
+          data:
+          {
+            email: 'admin@hiphim.com'
+          }
+        }
+      ]
   },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: '', redirectTo: 'admin-page', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: NotfoundComponent }
 ];
 
