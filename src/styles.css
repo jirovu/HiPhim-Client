@@ -3,6 +3,9 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
 body{
-    background-color: #e9ebee;
+    background-image: url('./assets/4.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
     margin: auto;
 }

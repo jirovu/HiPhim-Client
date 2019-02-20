@@ -4,3 +4,23 @@
 .title-web a{
     font-size: 30px;
 }
+.title-web > a{
+    color: white !important;
+}
+.title-web > a:hover{
+    color: #85CC26 !important;
+}
+.container{
+    margin: 35px auto;
+}
+.custom-color{
+    color: black !important;
+}
+.custom-color:hover{
+    color: #85CC26 !important;
+}
+.item-bar{
+    background-color: white;
+    padding: 0 10px;
+    border-radius: 5px;
+}

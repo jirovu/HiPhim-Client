@@ -10,6 +10,7 @@ import { DataService } from '../services/data/data.service';
 export class HeaderComponent implements OnInit {
 
   email: string;
+  isSearch: boolean = false;
 
   constructor(private auth: AuthService,
     private dataService: DataService) { }
@@ -18,4 +19,7 @@ export class HeaderComponent implements OnInit {
     this.dataService.email.subscribe(email => this.email = email);
   }
 
+  onSearch() {
+    this.isSearch = !this.isSearch;
+  }
 }

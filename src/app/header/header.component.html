@@ -1,28 +1,31 @@
-<nav class="navbar navbar-dark bg-dark mb-5">
-  <h1 class="title-web"><a class="navbar-brand text-success" [routerLink]="[ '' ]">HiPhim</a></h1>
-  <div class="navbar-expand ml-auto navbar-nav">
-    <div class="navbar-nav">
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2 text-success" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" style="margin-right: 10px;" type="submit">Search</button>
-      </form>
-      <div class="navbar-expand mr-auto">
-        <div class="navbar-nav">
-          <a *ngIf="!email" class="nav-item nav-link text-success" [routerLink]="[ '/register' ]"
-            routerLinkActive="active">Register</a>
-          <a *ngIf="!email" class="nav-item nav-link text-success" [routerLink]="[ '/login' ]"
-            routerLinkActive="active">Login</a>
-          <div *ngIf="email" class="dropdown">
-            <button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown">
-              <a>{{email}}</a>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item" style="text-decoration: none;" [routerLink]="[ '/personal/user' ]">Profile</a>
-              <a class="dropdown-item" href="#">Logout</a>
+<div class="container">
+  <nav class="navbar mb-5">
+    <h1 class="title-web"><a [routerLink]="[ '' ]">HiPhim</a></h1>
+    <div class="navbar-expand ml-auto navbar-nav">
+      <div class="navbar-nav item-bar">
+        <form class="form-inline my-2 my-lg-0">
+          <input *ngIf="isSearch" class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
+          <button class="btn my-2 my-sm-0 custom-color" style="margin-right: 10px;" (click)="onSearch()"
+            type="submit">Search</button>
+        </form>
+        <div class="navbar-expand mr-auto">
+          <div class="navbar-nav">
+            <a *ngIf="!email" class="nav-item nav-link  custom-color" [routerLink]="[ '/register' ]"
+              routerLinkActive="active">Register</a>
+            <a *ngIf="!email" class="nav-item nav-link  custom-color" [routerLink]="[ '/login' ]"
+              routerLinkActive="active">Login</a>
+            <div *ngIf="email" class="dropdown">
+              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                <a>{{email}}</a>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" style="text-decoration: none;" [routerLink]="[ '/personal/user' ]">Profile</a>
+                <a class="dropdown-item" href="#">Logout</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</div>
