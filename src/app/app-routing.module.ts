@@ -7,8 +7,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { HomeComponent } from './home/home.component';
-import { AdminGuardService } from './services/admin-guard/admin-guard.service';
-import { UserGuardService } from './services/user-guard/user-guard.service';
+import { AdminGuardService } from './services/guard/admin-guard/admin-guard.service';
+import { UserGuardService } from './services/guard/user-guard/user-guard.service';
 import { PublicComponent } from './public/public.component';
 
 const routes: Routes = [

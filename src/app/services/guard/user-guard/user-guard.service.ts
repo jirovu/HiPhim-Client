@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import decode from 'jwt-decode';
-import { AuthService } from '../auth/auth.service';
-import { Router, ActivatedRouteSnapshot, CanActivate } from '@angular/router';
+import { AuthService } from '../../auth/auth.service';
+import { Router, CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuardService implements CanActivate {
+export class UserGuardService implements CanActivate {
+
   constructor(private auth: AuthService,
     private router: Router,
     private cookieService: CookieService) { }
@@ -16,16 +17,17 @@ export class AdminGuardService implements CanActivate {
     if (!this.auth.isAuthenticated()) {
       this.router.navigate(['login']);
       return false;
+    } else if (this.isAdmin(route)) {
+      this.router.navigate(['personal/admin']);
+      return false;
     }
-    
+    return true;
+  }
+
+  isAdmin(route: ActivatedRouteSnapshot): boolean {
     const email = route.data.email;
     const token = this.cookieService.get('JWT-TOKEN');
     const tokenPlayload = decode(token);
-    if (this.auth.isAuthenticated() && tokenPlayload.sub == email) {
-      return true;
-    } else {
-      this.router.navigate(['login']);
-      return false;
-    }
+    return tokenPlayload.sub == email;
   }
 }
