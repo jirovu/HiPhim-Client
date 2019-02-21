@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { Supervisor } from 'src/app/models/Supervisor';
 import { Movie } from 'src/app/models/Movie';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestapiService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private cookieService: CookieService) { }
 
   public getData(): Observable<any> {
     return this.http.get('http://localhost:1010/user/greet', {
@@ -46,5 +48,12 @@ export class RestapiService {
 
   public getMovie(url: string): Observable<Movie> {
     return this.http.get<Movie>(`http://localhost:1010/home/personal${url}`);
+  }
+
+  public logout(): Observable<any> {
+    var token = this.cookieService.get('JWT-TOKEN');
+    return this.http.post('http://localhost:1010/user/logout', {}, {
+      withCredentials: true
+    });
   }
 }
