@@ -8,4 +8,8 @@ body{
     background-size: 100%;
     background-attachment: fixed;
     margin: auto;
+    height: 100%;
+}
+html{
+    height: 100%;
 }
