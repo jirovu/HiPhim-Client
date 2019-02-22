@@ -1,7 +1,7 @@
 <div class="container">
   <div class="page">
     <mat-form-field class="filters">
-      <mat-select placeholder="Select category">
+      <mat-select placeholder="Select category" (selectionChange)="onSelect($event)">
         <mat-option *ngFor="let category of categogries" [value]="category.toLowerCase()">
           {{category}}
         </mat-option>

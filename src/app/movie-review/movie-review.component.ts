@@ -23,4 +23,9 @@ export class MovieReviewComponent implements OnInit {
       .subscribe(res => this.movies = res);
   }
 
+  onSelect(event: any) {
+    this.restApi.getMoviesByCategory(event.source.value)
+      .subscribe(res => this.movies = res);
+  }
+
 }

@@ -45,9 +45,16 @@ export class RestapiService {
   }
 
   public logout(): Observable<any> {
-    var token = this.cookieService.get('JWT-TOKEN');
     return this.http.post('http://localhost:1010/auth/logout', {}, {
       withCredentials: true
+    });
+  }
+
+  public getMoviesByCategory(category: string): Observable<Array<Movie>>{
+    return this.http.get<Array<Movie>>('http://localhost:1010/home/get-movies-by-category', {
+      params: {
+        category: category
+      }
     });
   }
 }
