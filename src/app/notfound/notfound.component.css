@@ -1,0 +1,11 @@
+.jumbotron{
+    display: inline-block;
+}
+.jumbotron > img {
+    float: left;
+    max-width: 40%;
+}
+.content{
+    float:left;
+    max-width: 60%;
+}
