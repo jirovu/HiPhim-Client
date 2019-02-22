@@ -9,6 +9,7 @@ body{
     background-attachment: fixed;
     margin: auto;
     height: 100%;
+    font-family: "Roboto", "Open Sans", sans-serif;
 }
 html{
     height: 100%;

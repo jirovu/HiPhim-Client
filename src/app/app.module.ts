@@ -30,6 +30,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { PublicComponent } from './public/public.component';
 import { MovieReviewComponent } from './movie-review/movie-review.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -63,7 +65,9 @@ import { MovieReviewComponent } from './movie-review/movie-review.component';
     MatProgressBarModule,
     MatSnackBarModule,
     MatListModule,
-    MatGridListModule
+    MatGridListModule,
+    AngularFontAwesomeModule,
+    MatSelectModule
   ],
   providers: [
     CookieService,

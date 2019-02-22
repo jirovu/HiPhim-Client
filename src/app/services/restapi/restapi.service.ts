@@ -37,7 +37,7 @@ export class RestapiService {
   }
 
   public getAllMovies(): Observable<Array<Movie>> {
-    return this.http.get<Array<Movie>>('http://localhost:1010/home');
+    return this.http.get<Array<Movie>>('http://localhost:1010/home/get-all-movies');
   }
 
   public getMovie(url: string): Observable<Movie> {
