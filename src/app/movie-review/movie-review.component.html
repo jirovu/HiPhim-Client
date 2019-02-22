@@ -9,7 +9,7 @@
     </mat-form-field>
 
     <div class="movie-list">
-      <div class="movie" *ngFor="let movie of movies">
+      <div class="movie" *ngFor="let movie of movies | paginate: { itemsPerPage: 8, currentPage: p }">
         <figure class="movie-poster">
           <video>
             <source [src]="movie.url" type="video/mp4">
@@ -22,5 +22,8 @@
       </div>
     </div> <!-- .movie-list -->
     <!-- pagination -->
+    <div class="pagination">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
   </div>
 </div> <!-- .container -->

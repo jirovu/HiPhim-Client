@@ -15,12 +15,15 @@ export class MovieReviewComponent implements OnInit {
     'Comedy'
   ];
   movies: Array<Movie>;
+  p: number = 1;
 
   constructor(private restApi: RestapiService) { }
 
   ngOnInit() {
     this.restApi.getAllMovies()
-      .subscribe(res => this.movies = res);
+      .subscribe(res => {
+        this.movies = res
+      });
   }
 
   onSelect(event: any) {

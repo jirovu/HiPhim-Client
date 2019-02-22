@@ -10,6 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -67,7 +68,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatListModule,
     MatGridListModule,
     AngularFontAwesomeModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxPaginationModule
   ],
   providers: [
     CookieService,

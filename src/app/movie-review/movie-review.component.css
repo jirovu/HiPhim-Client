@@ -1,4 +1,5 @@
 /* Main container */
+
 .container {
   background: white;
   border-radius: 5px;
@@ -7,6 +8,7 @@
 }
 
 /* List movie */
+
 .movie-list {
   margin: 0 -15px;
 }
@@ -85,4 +87,10 @@
 
 .movie-list .movie .movie-title a:hover {
   color: #ffaa3c;
+}
+
+.pagination {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
 }
