@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/Movie';
 import { RestapiService } from '../services/restapi/restapi.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-review',
@@ -17,7 +18,8 @@ export class MovieReviewComponent implements OnInit {
   movies: Array<Movie>;
   p: number = 1;
 
-  constructor(private restApi: RestapiService) { }
+  constructor(private restApi: RestapiService,
+    private router: Router) { }
 
   ngOnInit() {
     this.restApi.getAllMovies()

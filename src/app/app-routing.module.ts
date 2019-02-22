@@ -53,6 +53,7 @@ const routes: Routes = [
   { path: 'movie-review', component: MovieReviewComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: 'not-found', component: NotfoundComponent },
   { path: '**', component: NotfoundComponent }
 ];
 

@@ -1,11 +1,14 @@
-.jumbotron{
+.container {
     display: inline-block;
+    padding-top: 5%;
 }
-.jumbotron > img {
+
+.container>img {
     float: left;
     max-width: 40%;
 }
-.content{
-    float:left;
+
+.content {
+    float: left;
     max-width: 60%;
 }
