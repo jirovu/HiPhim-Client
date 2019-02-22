@@ -13,33 +13,27 @@ export class RestapiService {
   constructor(private http: HttpClient,
     private cookieService: CookieService) { }
 
-  public getData(): Observable<any> {
-    return this.http.get('http://localhost:1010/user/greet', {
-      responseType: 'text'
-    });
-  }
-
   public login(data: any): Observable<any> {
-    return this.http.post('http://localhost:1010/user/login'
+    return this.http.post('http://localhost:1010/auth/login'
       , data);
   }
 
   public registerUser(data: User): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:1010/user/register', data);
+    return this.http.post<boolean>('http://localhost:1010/auth/register', data);
   }
 
   public identifyEmail(data: Supervisor): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:1010/user/forget-password',
+    return this.http.post<boolean>('http://localhost:1010/auth/forget-password',
       data);
   }
 
   public identifyCode(data: any): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:1010/user/identify-code',
+    return this.http.post<boolean>('http://localhost:1010/auth/identify-code',
       data);
   }
 
   public changePassword(password: string, identifyCode: string): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:1010/user/change-password', { password, identifyCode });
+    return this.http.post<boolean>('http://localhost:1010/auth/change-password', { password, identifyCode });
   }
 
   public getAllMovies(): Observable<Array<Movie>> {
@@ -52,7 +46,7 @@ export class RestapiService {
 
   public logout(): Observable<any> {
     var token = this.cookieService.get('JWT-TOKEN');
-    return this.http.post('http://localhost:1010/user/logout', {}, {
+    return this.http.post('http://localhost:1010/auth/logout', {}, {
       withCredentials: true
     });
   }

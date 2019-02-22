@@ -29,6 +29,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { PublicComponent } from './public/public.component';
+import { MovieReviewComponent } from './movie-review/movie-review.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { PublicComponent } from './public/public.component';
     FooterComponent,
     HomeComponent,
     PublicComponent,
+    MovieReviewComponent,
   ],
   imports: [
     BrowserModule,

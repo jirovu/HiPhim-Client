@@ -31,14 +31,24 @@ export class ForgotPasswordComponent implements OnInit {
     this.isLoad = true;
     this.restService.identifyEmail(this.supervisor)
       .subscribe(res => {
-        console.log(res);
         this.isValidEmail = res
-      });
+      },
+        err => {
+          this.isLoad = false;
+          this.snackBar.open('Email not found', 'Ok', {
+            duration: 3000,
+          });
+        });
   }
 
   onIdentifyCode() {
     this.restService.identifyCode(this.supervisor)
-      .subscribe(res => this.isValidCode = res);
+      .subscribe(res => this.isValidCode = res,
+        err => {
+          this.snackBar.open('Invalid Identify Code', 'Ok', {
+            duration: 3000,
+          })
+        });
   }
 
   changePassword() {
@@ -51,7 +61,9 @@ export class ForgotPasswordComponent implements OnInit {
             duration: 3000,
           });
         } else {
-          alert('Password failed to change');
+          this.snackBar.open('Changing password failed', 'Ok', {
+            duration: 3000,
+          });
         }
       });
   }

@@ -10,6 +10,10 @@
         </form>
         <div class="navbar-expand mr-auto">
           <div class="navbar-nav">
+            <a class="nav-item nav-link  custom-color" [routerLink]="[ '/home' ]"
+              routerLinkActive="active">Home</a>
+            <a class="nav-item nav-link  custom-color" [routerLink]="[ '/movie-review' ]"
+              routerLinkActive="active">Movie Review</a>
             <a *ngIf="!email" class="nav-item nav-link  custom-color" [routerLink]="[ '/register' ]"
               routerLinkActive="active">Register</a>
             <a *ngIf="!email" class="nav-item nav-link  custom-color" [routerLink]="[ '/login' ]"

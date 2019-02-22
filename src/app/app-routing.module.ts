@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { AdminGuardService } from './services/guard/admin-guard/admin-guard.service';
 import { UserGuardService } from './services/guard/user-guard/user-guard.service';
 import { PublicComponent } from './public/public.component';
+import { MovieReviewComponent } from './movie-review/movie-review.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -49,6 +50,7 @@ const routes: Routes = [
         }
       ]
   },
+  { path: 'movie-review', component: MovieReviewComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: NotfoundComponent }
