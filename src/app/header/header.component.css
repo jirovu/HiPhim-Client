@@ -16,11 +16,38 @@
 .custom-color{
     color: black !important;
 }
-.custom-color:hover{
-    color: #85CC26 !important;
+.custom-color:hover, .custom-color:focus {
+    color: white !important;
+    background-color: #85CC26;
 }
 .item-bar{
     background-color: white;
     padding: 0 10px;
     border-radius: 5px;
+}
+.nav-item {
+    border-bottom: 2px solid white;
+}
+.nav-item:hover{
+    border-bottom: 2px solid red;
+}
+.nav-item:focus{
+    border-bottom: 2px solid red;
+    background-color: #85CC26;
+}
+.branding{
+    text-decoration: none;
+    max-height: 100%;
+}
+.branding > img {
+    display: inline-block;
+    height: 48px;
+}
+.log-copy {
+    float: right;
+    margin-left: 20px;
+}
+.log-copy > h5, .log-copy > p {
+    margin: 0px;
+    color: white;
 }
