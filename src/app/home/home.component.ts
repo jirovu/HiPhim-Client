@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.restApi.getAllMovies()
       .subscribe(res => {
-        this.firstMovie = res[Math.floor(Math.random() * res.length) + 1];
+        this.firstMovie = res[Math.floor(Math.random() * res.length)];
         this.slideMovies = this.forHandler(res, 1);
         this.leftMoviesList = this.forHandler(res, 2);
         this.movies = this.forHandler(res, 7);
