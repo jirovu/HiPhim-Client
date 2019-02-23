@@ -1,9 +1,119 @@
-<mat-grid-list cols="2" rowHeight="2:1">
-  <mat-grid-tile *ngFor="let movie of movies">
-    <a [routerLink]="[ '/watch/' + movie.userId ]" [queryParams]="{id: movie.id}" routerLinkActive="active">
-      <video style="width: 100%; height: 100%;">
-        <source src="{{movie.url}}" type="video/mp4">
-      </video>
-    </a>
-  </mat-grid-tile>
-</mat-grid-list>
+<main class="main-content">
+  <div class="container">
+    <div class="page">
+      <h3>Most popular</h3>
+      <div class="row slide">
+        <div class="col-md-9">
+          <div id="demo" class="carousel slide" data-ride="carousel">
+
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+              <li data-target="#demo" data-slide-to="0" class="active"></li>
+              <li data-target="#demo" data-slide-to="1"></li>
+              <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+          
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="slider" src="https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-15.jpg" alt="Demo 1">
+                <div class="carousel-caption">
+                  <h3>Title</h3>
+                  <p>Some decription if you know!</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img class="slider" src="http://media.doisongphapluat.com/448/2015/8/13/van%20may%20cua%20ban%20hom%20nay%20138%20dspl.jpg" alt="Demo 2">
+                <div class="carousel-caption">
+                  <h3>Title</h3>
+                  <p>Some decription if you know!</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img class="slider" src="https://muachungcdn.com/thumb_w/550,99/product/thumbnail/2018/05/30/fwhw6.jpg" alt="Demo 3">
+                <div class="carousel-caption">
+                  <h3>Title</h3>
+                  <p>Some decription if you know!</p>
+                </div>
+              </div>
+            </div>
+          
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </a>
+          
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="row">
+            <div class="col-sm-6 col-md-12">
+              <div class="latest-movie">
+                <a href="#"><img src="https://znews-photo.zadn.vn/w660/Uploaded/vzdiy/2015_08_19/t.jpg" alt="Movie 1"></a>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-12">
+              <div class="latest-movie">
+                <a href="#"><img src="https://muachungcdn.com/thumb_w/550,99/product/thumbnail/2018/05/30/fwhw6.jpg" alt="Movie 2"></a>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-12">
+              <div class="latest-movie">
+                <a href="#"><img src="https://znews-photo.zadn.vn/w660/Uploaded/vzdiy/2015_08_19/t.jpg" alt="Movie 1"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> <!-- .row -->
+      <h3>Viewest Film</h3>
+      <div class="row">
+        <div class="col-sm-6 col-md-3">
+          <div class="latest-movie">
+            <a href="#"><img src="https://muachungcdn.com/thumb_w/550,99/product/thumbnail/2018/05/30/fwhw6.jpg" alt="Movie 3"></a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="latest-movie">
+            <a href="#"><img src="https://znews-photo.zadn.vn/w660/Uploaded/vzdiy/2015_08_19/t.jpg" alt="Movie 4"></a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="latest-movie">
+            <a href="#"><img src="https://muachungcdn.com/thumb_w/550,99/product/thumbnail/2018/05/30/fwhw6.jpg" alt="Movie 5"></a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="latest-movie">
+            <a href="#"><img src="https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-15.jpg" alt="Movie 6"></a>
+          </div>
+        </div>
+      </div> <!-- .row -->
+      <h3>Newest Film</h3>
+      <div class="row">
+        <div class="col-sm-6 col-md-3">
+          <div class="latest-movie">
+            <a href="#"><img src="https://muachungcdn.com/thumb_w/550,99/product/thumbnail/2018/05/30/fwhw6.jpg" alt="Movie 3"></a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="latest-movie">
+            <a href="#"><img src="https://znews-photo.zadn.vn/w660/Uploaded/vzdiy/2015_08_19/t.jpg" alt="Movie 4"></a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="latest-movie">
+            <a href="#"><img src="https://muachungcdn.com/thumb_w/550,99/product/thumbnail/2018/05/30/fwhw6.jpg" alt="Movie 5"></a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-3">
+          <div class="latest-movie">
+            <a href="#"><img src="https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-15.jpg" alt="Movie 6"></a>
+          </div>
+        </div>
+      </div> <!-- .row -->
+    </div>
+  </div> <!-- .container -->
+</main>
