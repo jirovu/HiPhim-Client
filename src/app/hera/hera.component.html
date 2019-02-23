@@ -15,7 +15,7 @@
       <input type="text" class="form-control" name="message" id="message" [(ngModel)]="message"
         placeholder="Enter your message" aria-describedby="basic-addon2">
       <div class="input-group-append">
-        <button (click)="onSend()" class="btn btn-outline-info" type="submit">
+        <button [disabled]="!message" (click)="onSend()" class="btn btn-outline-info" type="submit">
           <i class="fas fa-share-square"></i>
         </button>
       </div>

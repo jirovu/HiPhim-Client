@@ -1,6 +1,12 @@
-.container {
+.main-content {
     background-color: white;
     padding: 35px;
     border-radius: 10px;
     min-height: 70%;
+}
+
+.content {
+    height: 100%;
+    position: relative;
+    overflow: auto;
 }

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class MovieReviewComponent implements OnInit {
   categogries: string[] = [
+    'All',
     'Action',
     'Romantic',
     'Cartoon',
@@ -29,8 +30,15 @@ export class MovieReviewComponent implements OnInit {
   }
 
   onSelect(event: any) {
-    this.restApi.getMoviesByCategory(event.source.value)
-      .subscribe(res => this.movies = res);
+    if (event.source.value === 'all') {
+      this.restApi.getAllMovies()
+        .subscribe(res => {
+          this.movies = res
+        });
+    } else {
+      this.restApi.getMoviesByCategory(event.source.value)
+        .subscribe(res => this.movies = res);
+    }
   }
 
 }
