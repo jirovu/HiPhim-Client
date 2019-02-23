@@ -1,7 +1,7 @@
 <main class="main-content">
   <div class="container">
     <div class="page">
-      <h3>Most popular</h3>
+      <h3 class="text-header">Most popular</h3>
       <div class="row slide">
         <div class="col-md-9">
           <div id="demo" class="carousel slide" data-ride="carousel">
@@ -9,35 +9,36 @@
             <!-- Indicators -->
             <ul class="carousel-indicators">
               <li data-target="#demo" data-slide-to="0" class="active"></li>
-              <li data-target="#demo" data-slide-to="1"></li>
-              <li data-target="#demo" data-slide-to="2"></li>
+              <li data-target="#demo" *ngFor="let item of slideMovies; let i=index" data-slide-to="i"></li>
             </ul>
-          
+
             <!-- The slideshow -->
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img class="slider" src="https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-15.jpg" alt="Demo 1">
-                <div class="carousel-caption">
-                  <h3>Title</h3>
-                  <p>Some decription if you know!</p>
-                </div>
+                <a *ngIf="firstMovie" [routerLink]="[ '/watch/' + firstMovie.userId ]"
+                  [queryParams]="{id: firstMovie.id}">
+                  <video width="100%" height="100%" class="slider">
+                    <source [src]="firstMovie.url">
+                  </video>
+                  <div class="carousel-caption">
+                    <h3>{{firstMovie.name}}</h3>
+                    <p>{{firstMovie.description}}</p>
+                  </div>
+                </a>
               </div>
-              <div class="carousel-item">
-                <img class="slider" src="http://media.doisongphapluat.com/448/2015/8/13/van%20may%20cua%20ban%20hom%20nay%20138%20dspl.jpg" alt="Demo 2">
-                <div class="carousel-caption">
-                  <h3>Title</h3>
-                  <p>Some decription if you know!</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img class="slider" src="https://muachungcdn.com/thumb_w/550,99/product/thumbnail/2018/05/30/fwhw6.jpg" alt="Demo 3">
-                <div class="carousel-caption">
-                  <h3>Title</h3>
-                  <p>Some decription if you know!</p>
-                </div>
+              <div class="carousel-item" *ngFor="let movie of slideMovies">
+                <a [routerLink]="[ '/watch/' + movie.userId ]" [queryParams]="{id: movie.id}">
+                  <video width="100%" height="100%" class="slider">
+                    <source [src]="movie.url">
+                  </video>
+                  <div class="carousel-caption">
+                    <h3>{{movie.name}}</h3>
+                    <p>{{movie.description}}</p>
+                  </div>
+                </a>
               </div>
             </div>
-          
+
             <!-- Left and right controls -->
             <a class="carousel-control-prev" href="#demo" data-slide="prev">
               <span class="carousel-control-prev-icon"></span>
@@ -45,72 +46,32 @@
             <a class="carousel-control-next" href="#demo" data-slide="next">
               <span class="carousel-control-next-icon"></span>
             </a>
-          
+
           </div>
         </div>
         <div class="col-md-3">
           <div class="row">
-            <div class="col-sm-6 col-md-12">
+            <div class="col-sm-6 col-md-12" *ngFor="let movie of leftMoviesList">
               <div class="latest-movie">
-                <a href="#"><img src="https://znews-photo.zadn.vn/w660/Uploaded/vzdiy/2015_08_19/t.jpg" alt="Movie 1"></a>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-12">
-              <div class="latest-movie">
-                <a href="#"><img src="https://muachungcdn.com/thumb_w/550,99/product/thumbnail/2018/05/30/fwhw6.jpg" alt="Movie 2"></a>
-              </div>
-            </div>
-            <div class="col-sm-6 col-md-12">
-              <div class="latest-movie">
-                <a href="#"><img src="https://znews-photo.zadn.vn/w660/Uploaded/vzdiy/2015_08_19/t.jpg" alt="Movie 1"></a>
+                <a *ngIf="leftMoviesList" [routerLink]="[ '/watch/' + movie.userId ]" [queryParams]="{id: movie.id}">
+                  <video width="100%" height="100%" class="slider">
+                    <source [src]="movie.url">
+                  </video>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div> <!-- .row -->
-      <h3>Viewest Film</h3>
+      <h3 class="text-header">Viewest Film</h3>
       <div class="row">
-        <div class="col-sm-6 col-md-3">
+        <div class="col-sm-6 col-md-3" *ngFor="let movie of movies">
           <div class="latest-movie">
-            <a href="#"><img src="https://muachungcdn.com/thumb_w/550,99/product/thumbnail/2018/05/30/fwhw6.jpg" alt="Movie 3"></a>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <div class="latest-movie">
-            <a href="#"><img src="https://znews-photo.zadn.vn/w660/Uploaded/vzdiy/2015_08_19/t.jpg" alt="Movie 4"></a>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <div class="latest-movie">
-            <a href="#"><img src="https://muachungcdn.com/thumb_w/550,99/product/thumbnail/2018/05/30/fwhw6.jpg" alt="Movie 5"></a>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <div class="latest-movie">
-            <a href="#"><img src="https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-15.jpg" alt="Movie 6"></a>
-          </div>
-        </div>
-      </div> <!-- .row -->
-      <h3>Newest Film</h3>
-      <div class="row">
-        <div class="col-sm-6 col-md-3">
-          <div class="latest-movie">
-            <a href="#"><img src="https://muachungcdn.com/thumb_w/550,99/product/thumbnail/2018/05/30/fwhw6.jpg" alt="Movie 3"></a>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <div class="latest-movie">
-            <a href="#"><img src="https://znews-photo.zadn.vn/w660/Uploaded/vzdiy/2015_08_19/t.jpg" alt="Movie 4"></a>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <div class="latest-movie">
-            <a href="#"><img src="https://muachungcdn.com/thumb_w/550,99/product/thumbnail/2018/05/30/fwhw6.jpg" alt="Movie 5"></a>
-          </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-          <div class="latest-movie">
-            <a href="#"><img src="https://i.9mobi.vn/cf/images/2015/03/nkk/hinh-dep-15.jpg" alt="Movie 6"></a>
+            <a *ngIf="movies" [routerLink]="[ '/watch/' + movie.userId ]" [queryParams]="{id: movie.id}">
+              <video width="100%" height="100%" class="slider">
+                <source [src]="movie.url">
+              </video>
+            </a>
           </div>
         </div>
       </div> <!-- .row -->

@@ -11,7 +11,10 @@ import { DataService } from '../services/data/data.service';
 })
 export class HomeComponent implements OnInit {
 
-  movies: Array<Movie>
+  movies: Array<Movie> = [];
+  slideMovies: Array<Movie> = [];
+  firstMovie: Movie;
+  leftMoviesList: Array<Movie> = [];
 
   constructor(private route: ActivatedRoute,
     private restApi: RestapiService,
@@ -19,6 +22,21 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.restApi.getAllMovies()
-      .subscribe(res => this.movies = res);
+      .subscribe(res => {
+        this.firstMovie = res[Math.floor(Math.random() * res.length) + 1];
+        this.slideMovies = this.forHandler(res, 1);
+        this.leftMoviesList = this.forHandler(res, 2);
+        this.movies = this.forHandler(res, 7);
+      });
+  }
+
+  forHandler(arr: Array<Movie>, endIndex: number): Array<Movie> {
+    let result: Array<Movie> = [];
+    for (let index = 0; index < arr.length; index++) {
+      if (index <= endIndex) {
+        result.push(arr[index]);
+      }
+    }
+    return result;
   }
 }
