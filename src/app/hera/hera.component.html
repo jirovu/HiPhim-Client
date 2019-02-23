@@ -1,0 +1,24 @@
+<mat-card [ngClass]="!isToggle ? 'hidden-hera' : 'chat-container'">
+  <div class="header">
+    <h6 [ngClass]="!isToggle ? 'hidden-title' : 'show-title'">Hera ChatBot</h6>
+    <button (click)="toggleHera()" style="position: absolute;top: 0px; right: 0px;" mat-raised-button color="primary">
+      <i class="fab fa-facebook-messenger"></i>
+    </button>
+  </div>
+  <div *ngIf="isToggle" class="content">
+    <div *ngFor="let map of conversation">
+        <p *ngFor="let message of map | keyvalue" [ngClass]="message.key">{{message.value}}</p>
+    </div>
+  </div>
+  <div *ngIf="isToggle" class="input">
+    <form class="input-group mb-3">
+      <input type="text" class="form-control" name="message" id="message" [(ngModel)]="message"
+        placeholder="Enter your message" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <button (click)="onSend()" class="btn btn-outline-info" type="button">
+          <i class="fas fa-share-square"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+</mat-card>

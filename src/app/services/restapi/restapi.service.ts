@@ -50,11 +50,17 @@ export class RestapiService {
     });
   }
 
-  public getMoviesByCategory(category: string): Observable<Array<Movie>>{
+  public getMoviesByCategory(category: string): Observable<Array<Movie>> {
     return this.http.get<Array<Movie>>('http://localhost:1010/home/get-movies-by-category', {
       params: {
         category: category
       }
+    });
+  }
+
+  public getAns(ask: string): Observable<string> {
+    return this.http.post('http://localhost:1010/home/get-ans', ask,{
+      responseType: 'text'
     });
   }
 }

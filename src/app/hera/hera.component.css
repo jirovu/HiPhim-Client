@@ -1,0 +1,76 @@
+.chat-container {
+    background-color: white;
+    position: fixed;
+    width: 300px;
+    height: 400px;
+    bottom: 0px;
+    right: 50px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.left {
+    text-align: right;
+    padding: 5px;
+    background-color: #3f51b5;
+    color: white;
+    float: right;
+    width: 60%;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.right {
+    text-align: left;
+    padding: 5px;
+    background-color: #3f51b5;
+    color: white;
+    float: left;
+    width: 60%;
+    padding: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.header {
+    height: 10%;
+    text-align: center;
+    color: #85CC26;
+    border-bottom: 1px solid gray;
+}
+
+.content {
+    height: 80%;
+    background-color: white;
+    overflow: scroll;
+}
+
+.input {
+    height: 10%;
+    bottom: 0px;
+}
+
+.hidden-hera {
+    position: fixed;
+    width: 300px;
+    height: 39px;
+    bottom: 0px;
+    right: 50px;
+    background-color: gray;
+}
+
+.hidden-title {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.show-title {
+    width: 100%;
+    height: 100%;
+    line-height: 39px;
+    margin: 0px;
+    padding: 0px;
+}
