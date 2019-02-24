@@ -23,20 +23,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.restApi.getAllMovies()
       .subscribe(res => {
-        this.firstMovie = res[Math.floor(Math.random() * res.length)];
-        this.slideMovies = this.forHandler(res, 1);
-        this.leftMoviesList = this.forHandler(res, 2);
-        this.movies = this.forHandler(res, 7);
+        this.slideMovies = res.slice(0, 3);
+        this.leftMoviesList = res.slice(3, 6);
+        this.movies = res;
       });
-  }
-
-  forHandler(arr: Array<Movie>, endIndex: number): Array<Movie> {
-    let result: Array<Movie> = [];
-    for (let index = 0; index < arr.length; index++) {
-      if (index <= endIndex) {
-        result.push(arr[index]);
-      }
-    }
-    return result;
   }
 }

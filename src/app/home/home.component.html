@@ -1,38 +1,26 @@
 <main class="main-content">
   <div class="container">
-    <div class="page">
+    <div *ngIf="slideMovies && leftMoviesList && movies" class="page">
       <h3 class="text-header">Most popular</h3>
       <div class="row slide">
         <div class="col-md-9">
           <div id="demo" class="carousel slide" data-ride="carousel">
 
             <!-- Indicators -->
-            <ul class="carousel-indicators">
-              <li data-target="#demo" data-slide-to="0" class="active"></li>
-              <li data-target="#demo" *ngFor="let item of slideMovies; let i=index" data-slide-to="i"></li>
-            </ul>
+            <ol class="carousel-indicators">
+              <li data-target="#demo" *ngFor="let item of slideMovies; let i=index" [class.active]="i==0"
+                data-slide-to="i"></li>
+            </ol>
 
             <!-- The slideshow -->
             <div class="carousel-inner">
-              <div class="carousel-item active">
-                <a *ngIf="firstMovie" [routerLink]="[ '/watch/' + firstMovie.userId ]"
-                  [queryParams]="{id: firstMovie.id}">
-                  <video width="100%" height="100%" class="slider">
-                    <source [src]="firstMovie.url">
-                  </video>
-                  <div class="carousel-caption">
-                    <h3>{{firstMovie.name}}</h3>
-                    <p>{{firstMovie.description}}</p>
-                  </div>
-                </a>
-              </div>
-              <div class="carousel-item" *ngFor="let movie of slideMovies">
+              <div class="carousel-item" *ngFor="let movie of slideMovies; let i=index" [class.active]="i==0">
                 <a [routerLink]="[ '/watch/' + movie.userId ]" [queryParams]="{id: movie.id}">
                   <video width="100%" height="100%" class="slider">
                     <source [src]="movie.url">
                   </video>
                   <div class="carousel-caption">
-                    <h3>{{movie.name}}</h3>
+                    <h3>{{movie.name}} - {{i}}</h3>
                     <p>{{movie.description}}</p>
                   </div>
                 </a>
@@ -53,7 +41,7 @@
           <div class="row">
             <div class="col-sm-6 col-md-12" *ngFor="let movie of leftMoviesList">
               <div class="latest-movie">
-                <a *ngIf="leftMoviesList" [routerLink]="[ '/watch/' + movie.userId ]" [queryParams]="{id: movie.id}">
+                <a [routerLink]="[ '/watch/' + movie.userId ]" [queryParams]="{id: movie.id}">
                   <video width="100%" height="100%" class="slider">
                     <source [src]="movie.url">
                   </video>
@@ -67,7 +55,7 @@
       <div class="row">
         <div class="col-sm-6 col-md-3" *ngFor="let movie of movies">
           <div class="latest-movie">
-            <a *ngIf="movies" [routerLink]="[ '/watch/' + movie.userId ]" [queryParams]="{id: movie.id}">
+            <a [routerLink]="[ '/watch/' + movie.userId ]" [queryParams]="{id: movie.id}">
               <video width="100%" height="100%" class="slider">
                 <source [src]="movie.url">
               </video>
