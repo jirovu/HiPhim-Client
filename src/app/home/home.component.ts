@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/Movie';
-import { ActivatedRoute } from '@angular/router';
 import { RestapiService } from '../services/restapi/restapi.service';
-import { DataService } from '../services/data/data.service';
 
 @Component({
   selector: 'app-home',
@@ -16,9 +14,7 @@ export class HomeComponent implements OnInit {
   firstMovie: Movie;
   leftMoviesList: Array<Movie> = [];
 
-  constructor(private route: ActivatedRoute,
-    private restApi: RestapiService,
-    private dataService: DataService) { }
+  constructor(private restApi: RestapiService) { }
 
   ngOnInit() {
     this.restApi.getAllMovies()
