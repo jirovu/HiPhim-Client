@@ -7,7 +7,7 @@
   </div>
   <div #scrollMe *ngIf="isToggle" class="content">
     <div *ngFor="let map of conversation">
-        <p *ngFor="let message of map | keyvalue" [ngClass]="message.key">{{message.value}}</p>
+        <p class="message" *ngFor="let message of map | keyvalue" [ngClass]="message.key">{{message.value}}</p>
     </div>
   </div>
   <div *ngIf="isToggle" class="input">
