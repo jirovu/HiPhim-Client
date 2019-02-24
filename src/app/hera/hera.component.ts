@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterContentChecked } from '@angular/core';
 import { RestapiService } from '../services/restapi/restapi.service';
 
 @Component({
@@ -6,16 +6,29 @@ import { RestapiService } from '../services/restapi/restapi.service';
   templateUrl: './hera.component.html',
   styleUrls: ['./hera.component.css']
 })
-export class HeraComponent implements OnInit {
+export class HeraComponent implements OnInit, AfterContentChecked {
   isToggle: boolean = false;
   isRight: boolean = true;
   message: string;
   conversation: Array<Map<String, String>> = [];
   heraResponse: string;
+  
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
   constructor(private restApi: RestapiService) { }
 
   ngOnInit() {
+    this.scrollToBottom();
+  }
+
+  ngAfterContentChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
   }
 
   toggleHera() {

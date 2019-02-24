@@ -5,7 +5,7 @@
       <i class="fab fa-facebook-messenger"></i>
     </button>
   </div>
-  <div *ngIf="isToggle" class="content">
+  <div #scrollMe *ngIf="isToggle" class="content">
     <div *ngFor="let map of conversation">
         <p *ngFor="let message of map | keyvalue" [ngClass]="message.key">{{message.value}}</p>
     </div>
