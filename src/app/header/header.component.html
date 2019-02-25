@@ -9,11 +9,6 @@
     </a>
     <div class="navbar-expand ml-auto navbar-nav">
       <div class="navbar-nav item-bar">
-        <form class="form-inline my-2 my-lg-0">
-          <input *ngIf="isSearch" class="form-control mr-sm-2 " type="search" placeholder="Search" aria-label="Search">
-          <button class="btn my-2 my-sm-0 custom-color" style="margin-right: 10px;" (click)="onSearch()"
-            type="submit">Search</button>
-        </form>
         <div class="navbar-expand mr-auto">
           <div class="navbar-nav">
             <a class="nav-item nav-link  custom-color home" [routerLink]="[ '/home' ]"

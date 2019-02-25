@@ -13,7 +13,6 @@ import { MatSnackBar } from '@angular/material';
 export class HeaderComponent implements OnInit {
 
   email: string;
-  isSearch: boolean = false;
 
   constructor(private dataService: DataService,
     private apiService: RestapiService,
@@ -22,10 +21,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.dataService.email.subscribe(email => this.email = email);
-  }
-
-  onSearch() {
-    this.isSearch = !this.isSearch;
   }
 
   onLogout() {

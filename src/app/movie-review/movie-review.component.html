@@ -8,7 +8,14 @@
       </mat-select>
     </mat-form-field>
 
-    <div class="movie-list">
+    <form style="float: right" class="example-form">
+      <mat-form-field class="example-full-width">
+        <input name="movieName" id="movieName" [(ngModel)]="movie.name" matInput placeholder="Search ...">
+      </mat-form-field>
+      <button mat-button color="accent" [disabled]="!movie.name" (click)="onSearch()">Seach</button>
+    </form>
+
+    <div *ngIf="movies" class="movie-list">
       <div class="movie" *ngFor="let movie of movies | paginate: { itemsPerPage: 8, currentPage: p }">
         <figure class="movie-poster">
           <video>
