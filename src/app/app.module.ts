@@ -34,6 +34,7 @@ import { MovieReviewComponent } from './movie-review/movie-review.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { MatSelectModule } from '@angular/material/select';
 import { HeraComponent } from './hera/hera.component';
+import { UserGuestComponent } from './user-guest/user-guest.component';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { HeraComponent } from './hera/hera.component';
     PublicComponent,
     MovieReviewComponent,
     HeraComponent,
+    UserGuestComponent,
   ],
   imports: [
     BrowserModule,
