@@ -50,7 +50,11 @@ import { HeraComponent } from './hera/hera.component';
     HomeComponent,
     PublicComponent,
     MovieReviewComponent,
+<<<<<<< HEAD
     HeraComponent,
+=======
+    HeraComponent
+>>>>>>> origin/view
   ],
   imports: [
     BrowserModule,
