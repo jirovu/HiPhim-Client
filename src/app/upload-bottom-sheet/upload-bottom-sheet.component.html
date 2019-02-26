@@ -1,0 +1,22 @@
+<form>
+  <div class="form-group">
+    <input type="file">
+  </div>
+</form>
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input name="description" id="description" matInput required placeholder="Description"
+      [(ngModel)]="movie.description">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Select category" (selectionChange)="onSelect($event)">
+      <mat-option name="category" id="category" *ngFor="let category of categogries" [value]="category">
+        {{category}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button style="width: 100%" mat-raised-button color="accent" [disabled]="!movie.description || !movie.category"
+    (click)="onUpload()">UPLOAD</button>
+</form>

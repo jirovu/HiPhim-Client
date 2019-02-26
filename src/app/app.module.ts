@@ -2,8 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatCheckboxModule, MatFormFieldModule,
-  MatInputModule
+  MatButtonModule,
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatBottomSheetModule
 } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -34,6 +37,7 @@ import { MovieReviewComponent } from './movie-review/movie-review.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { MatSelectModule } from '@angular/material/select';
 import { HeraComponent } from './hera/hera.component';
+import { UploadBottomSheetComponent } from './upload-bottom-sheet/upload-bottom-sheet.component';
 
 
 @NgModule({
@@ -50,11 +54,8 @@ import { HeraComponent } from './hera/hera.component';
     HomeComponent,
     PublicComponent,
     MovieReviewComponent,
-<<<<<<< HEAD
     HeraComponent,
-=======
-    HeraComponent
->>>>>>> origin/view
+    UploadBottomSheetComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +76,8 @@ import { HeraComponent } from './hera/hera.component';
     MatGridListModule,
     AngularFontAwesomeModule,
     MatSelectModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatBottomSheetModule
   ],
   providers: [
     CookieService,
@@ -85,6 +87,7 @@ import { HeraComponent } from './hera/hera.component';
       multi: true
     }
   ],
+  entryComponents: [UploadBottomSheetComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,82 +1,56 @@
-<div class="container">
-    <div class="row">
-        <div class="col-sm-3 col-md-3">
-            <div class="panel-group" id="accordion">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span
-                                    class="fa fa-list-alt icon-padding">
-                                </span>Content</a>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse in">
-                        <div class="card-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <span class="fa fa-pencil icon-padding"></span><a href=#>Upload</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="fas fa-edit text-info icon-padding"></span><a href=#>Edit</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="fa fa-trash-o text-danger text-danger icon-padding"></span><a
-                                            href=#>Delete</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="fas fa-comments text-success"></span><a href=#>Comments</a>
-                                        <span class="badge">42</span>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+<div class="row">
+    <div class="col-sm-2 col-md-2">
+        <div class="panel-group" id="accordion">
+            <button class="toggle-btn" mat-raised-button color="accent" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseOne"><span class="fa fa-list-alt icon-padding">
+                </span>Content</button>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <span class="fa fa-pencil icon-padding"></span><a (click)="openBottomSheet()">Upload</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="fas fa-edit text-info icon-padding"></span><a href=#>Edit</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="fa fa-trash-o text-danger text-danger icon-padding"></span><a
+                                    href=#>Delete</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="fas fa-comments text-success"></span><a href=#>Comments</a>
+                                <span class="badge">42</span>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span
-                                    class="fa fa-user icon-padding">
-                                </span>Account</a>
-                        </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse">
-                        <div class="card-body">
-                            <table class="table">
-                                <tr>
-                                    <td>
-                                        <a href=#>Change Password</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href=#>Notifications</a> <span class="label label-info">5</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <span class="fa fa-trash-o text-danger text-danger icon-padding"></span><a
-                                            href=# class="text-danger">
-                                            Delete Account</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
+            </div>
+            <button class="toggle-btn" mat-raised-button color="primary" data-toggle="collapse" data-parent="#accordion"
+                href="#collapseThree"><span class="fa fa-user icon-padding">
+                </span>Account</button>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <td>
+                                <a href=#>Change Password</a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
-        <div class="col-sm-9 col-md-9">
-            <div class="card-body">
-                <h1 style="margin: auto;text-align: center">XIN CHAO USER</h1>
-            </div>
+    </div>
+    <div class="col-sm-9 col-md-9">
+        <div class="card-body">
+            <h1 style="margin: auto;text-align: center">XIN CHAO USER</h1>
         </div>
     </div>
 </div>
