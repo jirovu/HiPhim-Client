@@ -1,4 +1,4 @@
-export class Movie{
+export class Movie {
     id: string;
     userId: string;
     name: string;

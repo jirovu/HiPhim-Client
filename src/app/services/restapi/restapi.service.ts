@@ -80,4 +80,12 @@ export class RestapiService {
       }
     })
   }
+
+  public uploadFile(movie: Movie, file: File): Observable<boolean> {
+    let formData: FormData = new FormData();
+    formData.append('file', file);
+    formData.append('description', movie.description);
+    formData.append('category', movie.category);
+    return this.http.post<boolean>('http://localhost:1010/user/uploadFile', formData);
+  }
 }

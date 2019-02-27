@@ -1,6 +1,6 @@
 <form>
   <div class="form-group">
-    <input type="file">
+    <input type="file" name="file" id="file" [(ngModel)]="file">
   </div>
 </form>
 <form class="example-form">
@@ -17,6 +17,6 @@
     </mat-select>
   </mat-form-field>
 
-  <button style="width: 100%" mat-raised-button color="accent" [disabled]="!movie.description || !movie.category"
+  <button style="width: 100%" mat-raised-button color="accent" [disabled]="!movie.description || !movie.category || !file"
     (click)="onUpload()">UPLOAD</button>
 </form>

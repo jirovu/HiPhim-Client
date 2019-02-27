@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheetRef } from '@angular/material';
 import { Movie } from '../models/Movie';
+import { RestapiService } from '../services/restapi/restapi.service';
 
 @Component({
   selector: 'app-upload-bottom-sheet',
@@ -15,17 +16,22 @@ export class UploadBottomSheetComponent implements OnInit {
     'Comedy'
   ];
   movie: Movie = new Movie();
+  file: File;
 
-  constructor(private bottomSheetRef: MatBottomSheetRef<UploadBottomSheetComponent>) { }
+  constructor(private bottomSheetRef: MatBottomSheetRef<UploadBottomSheetComponent>,
+    private restApi: RestapiService) { }
 
   ngOnInit() {
   }
 
   onUpload() {
-    console.log(this.movie);
+    
+    this.restApi.uploadFile(this.movie, this.file)
+      .subscribe(res => console.log(res),
+        err => console.log(err));
   }
 
-  onSelect(event){
+  onSelect(event) {
     this.movie.category = event.source.value;
   }
 }
