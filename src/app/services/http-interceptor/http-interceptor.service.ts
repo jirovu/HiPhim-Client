@@ -13,7 +13,7 @@ export class HttpInterceptorService implements HttpInterceptor {
       withCredentials: true
     });
     if (token) {
-      var newHeader = req.clone({
+      var newHeader = newHeader.clone({
         headers: req.headers.set('Authorization', `Bearer ${token}`)
       });
     }

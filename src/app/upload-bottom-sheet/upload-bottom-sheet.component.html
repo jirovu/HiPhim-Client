@@ -1,6 +1,6 @@
 <form>
   <div class="form-group">
-    <input type="file" name="file" id="file" [(ngModel)]="file">
+    <input type="file" name="file" id="file" (change)="fileChange($event)">
   </div>
 </form>
 <form class="example-form">

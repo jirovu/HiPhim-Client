@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatBottomSheetRef } from '@angular/material';
+import { MatBottomSheetRef, MatSnackBar } from '@angular/material';
 import { Movie } from '../models/Movie';
 import { RestapiService } from '../services/restapi/restapi.service';
 
@@ -19,16 +19,22 @@ export class UploadBottomSheetComponent implements OnInit {
   file: File;
 
   constructor(private bottomSheetRef: MatBottomSheetRef<UploadBottomSheetComponent>,
-    private restApi: RestapiService) { }
+    private restApi: RestapiService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
 
   onUpload() {
-    
     this.restApi.uploadFile(this.movie, this.file)
-      .subscribe(res => console.log(res),
+      .subscribe(res => {
+        this.snackBar.open('Upload successfully', 'OK');
+      },
         err => console.log(err));
+  }
+
+  fileChange(event: any){
+    this.file = event.target.files[0];
   }
 
   onSelect(event) {
