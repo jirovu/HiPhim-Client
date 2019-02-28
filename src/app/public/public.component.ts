@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class PublicComponent implements OnInit {
   movie: Movie;
+  movies: Array<Movie>;
 
   constructor(private restApi: RestapiService,
     private router: Router) { }
@@ -17,8 +18,12 @@ export class PublicComponent implements OnInit {
   ngOnInit() {
     var url = this.router.url.substring("/watch".length);
     this.restApi.getMovie(url)
-      .subscribe(res => { console.log(res); this.movie = res },
+      .subscribe(res => { this.movie = res },
         err => { this.router.navigate(['not-found']) });
+
+    this.restApi.getAllMoviesByUserId(url)
+      .subscribe(res => this.movies = res,
+        err => console.error(err));
   }
 
 }

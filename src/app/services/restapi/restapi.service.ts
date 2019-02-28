@@ -88,4 +88,9 @@ export class RestapiService {
     formData.append('category', movie.category);
     return this.http.post<boolean>('http://localhost:1010/user/uploadFile', formData);
   }
+
+  public getAllMoviesByUserId(url: string): Observable<Array<Movie>>{
+    return this.http.get<Array<Movie>>(`http://localhost:1010/home/watch${url}`,{
+    });
+  }
 }

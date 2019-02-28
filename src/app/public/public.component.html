@@ -3,3 +3,11 @@
     <h4 *ngIf="movie" style="color:red">{{movie.name}}</h4>
     <h4 *ngIf="movie">{{movie.description}}</h4>
 </div>
+
+<div class="container">
+    <ul>
+        <li *ngFor="let movie of movies">
+            <video src="{{movie.url}}"></video>
+        </li>
+    </ul>
+</div>
