@@ -89,8 +89,24 @@ export class RestapiService {
     return this.http.post<boolean>('http://localhost:1010/user/uploadFile', formData);
   }
 
-  public getAllMoviesByUserId(url: string): Observable<Array<Movie>>{
-    return this.http.get<Array<Movie>>(`http://localhost:1010/home/watch${url}`,{
+  public getAllMoviesByUserId(url: string): Observable<Array<Movie>> {
+    return this.http.get<Array<Movie>>(`http://localhost:1010/home/watch${url}`, {
     });
+  }
+
+  public changePassForUser(user: User): Observable<boolean> {
+    return this.http.put<boolean>('http://localhost:1010/user/changePassword', user);
+  }
+
+  public getALlMoviesByUser(): Observable<Array<Movie>> {
+    return this.http.get<Array<Movie>>('http://localhost:1010/user/getAllMovies');
+  }
+
+  public editMovie(movie: Movie): Observable<Array<Movie>> {
+    return this.http.put<Array<Movie>>('http://localhost:1010/user/editMovie', movie);
+  }
+
+  public deleteMovie(movie: Movie): Observable<Array<Movie>>{
+    return this.http.post<Array<Movie>>('http://localhost:1010/user/deleteMovie', movie);
   }
 }

@@ -6,7 +6,8 @@ import {
   MatCheckboxModule,
   MatFormFieldModule,
   MatInputModule,
-  MatBottomSheetModule
+  MatBottomSheetModule,
+  MatDialogModule
 } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -39,7 +40,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { HeraComponent } from './hera/hera.component';
 import { UploadBottomSheetComponent } from './upload-bottom-sheet/upload-bottom-sheet.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +55,7 @@ import { UploadBottomSheetComponent } from './upload-bottom-sheet/upload-bottom-
     PublicComponent,
     MovieReviewComponent,
     HeraComponent,
-    UploadBottomSheetComponent
+    UploadBottomSheetComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +77,8 @@ import { UploadBottomSheetComponent } from './upload-bottom-sheet/upload-bottom-
     AngularFontAwesomeModule,
     MatSelectModule,
     NgxPaginationModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatDialogModule
   ],
   providers: [
     CookieService,
