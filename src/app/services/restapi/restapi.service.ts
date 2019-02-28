@@ -5,6 +5,7 @@ import { User } from 'src/app/models/User';
 import { Supervisor } from 'src/app/models/Supervisor';
 import { Movie } from 'src/app/models/Movie';
 import { CookieService } from 'ngx-cookie-service';
+import { Comment } from 'src/app/models/Comment';
 
 @Injectable({
   providedIn: 'root'
@@ -106,7 +107,31 @@ export class RestapiService {
     return this.http.put<Array<Movie>>('http://localhost:1010/user/editMovie', movie);
   }
 
-  public deleteMovie(movie: Movie): Observable<Array<Movie>>{
+  public deleteMovie(movie: Movie): Observable<Array<Movie>> {
     return this.http.post<Array<Movie>>('http://localhost:1010/user/deleteMovie', movie);
+  }
+
+  public addComment(comment: Comment, email: string): Observable<Array<Comment>> {
+    let formData: FormData = new FormData();
+    formData.append('movieId', comment.movieId);
+    formData.append('content', comment.content);
+    formData.append('email', email);
+    return this.http.post<Array<Comment>>('http://localhost:1010/user/addComment', formData);
+  }
+
+  public getAllCommentsByMovieId(movieId: string): Observable<Array<Comment>> {
+    return this.http.get<Array<Comment>>('http://localhost:1010/user/getAllComments', {
+      params: {
+        movieId
+      }
+    })
+  }
+
+  public getUserByUserId(userId: string): Observable<User> {
+    return this.http.get<User>('http://localhost:1010/user/getUserByUserId', {
+      params: {
+        userId
+      }
+    })
   }
 }

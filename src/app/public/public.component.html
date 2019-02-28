@@ -1,13 +1,46 @@
-<div class="container" *ngIf="movie">
+<div class="container video-box" *ngIf="movie">
     <video width="100%" src="{{movie.url}}" autoplay controls></video>
     <h4 *ngIf="movie" style="color:red">{{movie.name}}</h4>
     <h4 *ngIf="movie">{{movie.description}}</h4>
 </div>
 
-<div class="container">
-    <ul>
-        <li *ngFor="let movie of movies">
-            <video src="{{movie.url}}"></video>
-        </li>
-    </ul>
+<div *ngIf="movies || comments" class="container content-box row">
+    <div class="comment-box col-7">
+        <div class="type">
+            <form class="input-group mb-12">
+                <input type="text" class="form-control" name="comment" id="comment" [(ngModel)]="comment.content"
+                    placeholder="Enter your comment" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button [disabled]="!comment.content || !user.email" class="btn btn-outline-info"
+                        (click)="onComment()">
+                        <i class="fas fa-share-square"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="comment">
+            <ul class="list-group">
+                <li style="padding:10px;" class="list-group-item" *ngFor="let comment of comments ; let i = index">
+                    <p style="padding: 0px; margin: 0px;color:red;">{{users[i]}}</p>
+                    <small style="padding: 0px 0 0 20px; margin: 0px;">{{comment.content}}</small>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div *ngIf="movies" class="list-movie col-5 row">
+        <ul>
+            <li class="movie-item col-12" *ngFor="let movie of movies">
+                <a class="link-movie" [routerLink]="[ '/watch/' + movie.userId ]" [queryParams]="{id: movie.id}"
+                    (click)="onSelectMovie(movie)">
+                    <video class="col-6" width="100%" src="{{movie.url}}"></video>
+                    <div class="col-6" style="float: right">
+                        <p style="margin: 0;padding: 0">{{movie.name}}</p>
+                        <small>{{movie.description}}</small>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
