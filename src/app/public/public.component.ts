@@ -17,7 +17,6 @@ export class PublicComponent implements OnInit {
   comment: Comment = new Comment();
   movies: Array<Movie>;
   comments: Array<Comment>;
-  users: Array<string> = new Array<string>();
 
   constructor(private restApi: RestapiService,
     private router: Router,
@@ -32,11 +31,6 @@ export class PublicComponent implements OnInit {
     this.restApi.getAllCommentsByMovieId(this.comment.movieId)
       .subscribe(res => {
         this.comments = res;
-        res.forEach(comment =>
-          this.restApi.getUserByUserId(comment.userId)
-            .subscribe(user => {
-              this.users.push(user.name);
-            }));
       });
 
     this.restApi.getMovie(url)
@@ -55,11 +49,6 @@ export class PublicComponent implements OnInit {
     this.restApi.getAllCommentsByMovieId(this.movie.id)
       .subscribe(res => {
         this.comments = res;
-        res.forEach(comment =>
-          this.restApi.getUserByUserId(comment.userId)
-            .subscribe(user => {
-              this.users.push(user.name);
-            }));
       });
 
     var url = `/${movie.userId}?id=${movie.id}`;
@@ -74,11 +63,6 @@ export class PublicComponent implements OnInit {
       .subscribe(res => {
         this.comment.content = "";
         this.comments = res;
-        res.forEach(comment =>
-          this.restApi.getUserByUserId(comment.userId)
-            .subscribe(user => {
-              this.users.push(user.name);
-            }));
       },
         err => console.log(err));
   }

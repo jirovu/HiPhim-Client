@@ -22,8 +22,13 @@
         <div class="comment">
             <ul class="list-group">
                 <li style="padding:10px;" class="list-group-item" *ngFor="let comment of comments ; let i = index">
-                    <p style="padding: 0px; margin: 0px;color:red;">{{users[i]}}</p>
-                    <small style="padding: 0px 0 0 20px; margin: 0px;">{{comment.content}}</small>
+                    <div class="avt">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="comment-content">
+                        <p style="padding: 0px; margin: 0px;color:red;">{{comment.nameUser}}</p>
+                        <small style="padding: 0px 0 0 20px; margin: 0px;">{{comment.content}}</small>
+                    </div>
                 </li>
             </ul>
         </div>

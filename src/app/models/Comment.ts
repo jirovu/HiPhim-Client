@@ -1,6 +1,6 @@
 export class Comment {
     id: string;
-    userId: string;
+    nameUser: string;
     movieId: string;
     content: string;
 }

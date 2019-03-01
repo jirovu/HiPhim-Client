@@ -34,3 +34,20 @@ ul, li {
 .list-group-item {
     border: none;
 }
+
+.avt {
+    text-align: center;
+    float: left;
+    width: 7%;
+    padding: 5px;
+    height: 100%;
+    color: white;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.comment-content {
+    margin-left: 1em;
+    float: left;
+    width: 90%;
+}
