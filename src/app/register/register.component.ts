@@ -20,20 +20,18 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit() {
-    this.restapi.registerUser(this.user)
-      .subscribe(res => {
-        this.router.navigate(['login']);
-        this.snackBar.open('Register successfully', 'Ok', {
-          duration: 3000,
-        });
-      },
-        err => {
-          this.router.navigate(['register']);
-          this.snackBar.open('Email already exist', 'Ok', {
-            duration: 3000,
-          });
-        });
+  async onSubmit() {
+    try {
+      await this.restapi.registerUser(this.user);
+      this.router.navigate(['login']);
+      this.snackBar.open('Register successfully', 'Ok', {
+        duration: 3000,
+      });
+    } catch (error) {
+      this.router.navigate(['register']);
+      this.snackBar.open('Email already exist', 'Ok', {
+        duration: 3000,
+      });
+    }
   }
-
 }

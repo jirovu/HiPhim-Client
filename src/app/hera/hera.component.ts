@@ -12,7 +12,7 @@ export class HeraComponent implements OnInit, AfterContentChecked {
   message: string;
   conversation: Array<Map<String, String>> = [];
   heraResponse: string;
-  
+
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
   constructor(private restApi: RestapiService) { }
@@ -35,16 +35,14 @@ export class HeraComponent implements OnInit, AfterContentChecked {
     this.isToggle = !this.isToggle;
   }
 
-  onSend() {
+  async onSend() {
     this.isRight = !this.isRight;
-    this.restApi.getAns(this.message).subscribe(res => {
-      this.heraResponse = res;
-      this.conversation.push();
-      let map = new Map<String, String>();
-      map.set("left", this.message);
-      map.set("right", this.heraResponse);
-      this.conversation.push(map);
-      this.message = "";
-    });
+    this.heraResponse = await this.restApi.getAns(this.message);
+    this.conversation.push();
+    let map = new Map<String, String>();
+    map.set("left", this.message);
+    map.set("right", this.heraResponse);
+    this.conversation.push(map);
+    this.message = "";
   }
 }

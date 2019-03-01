@@ -20,43 +20,29 @@ export class MovieReviewComponent implements OnInit {
   p: number = 1;
   movie: Movie = new Movie();
 
-  constructor(private restApi: RestapiService,
-    private router: Router) { }
+  constructor(private restApi: RestapiService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.movie.category = 'all';
-    this.restApi.getAllMovies()
-      .subscribe(res => {
-        this.movies = res
-      });
+    this.movies = await this.restApi.getAllMovies();
   }
 
-  onSelect(event: any) {
+  async onSelect(event: any) {
     this.movie.category = event.source.value;
     if (this.movie.category === 'all') {
-      this.restApi.getAllMovies()
-        .subscribe(res => {
-          this.movies = res
-        });
+      this.movies = await this.restApi.getAllMovies();
     } else {
-      this.restApi.getMoviesByCategory(this.movie.category)
-        .subscribe(res => this.movies = res);
+      this.movies = await this.restApi.getMoviesByCategory(this.movie.category);
     }
   }
 
-  onSearch() {
+  async onSearch() {
     if (this.movie.category == 'all') {
-      this.restApi.getMoviesByName(this.movie)
-        .subscribe(res => {
-          this.movies = res;
-          this.movie.name = null;
-        });
+      this.movies = await this.restApi.getMoviesByName(this.movie);
+      this.movie.name = null;
     } else {
-      this.restApi.getMoviesByCategoryAndName(this.movie)
-        .subscribe(res => {
-          this.movies = res;
-          this.movie.name = null;
-        });
+      this.movies = await this.restApi.getMoviesByCategoryAndName(this.movie);
+      this.movie.name = null;
     }
   }
 

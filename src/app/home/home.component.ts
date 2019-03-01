@@ -16,12 +16,9 @@ export class HomeComponent implements OnInit {
 
   constructor(private restApi: RestapiService) { }
 
-  ngOnInit() {
-    this.restApi.getAllMovies()
-      .subscribe(res => {
-        this.slideMovies = res.slice(0, 3);
-        this.leftMoviesList = res.slice(3, 6);
-        this.movies = res;
-      });
+  async ngOnInit() {
+    this.movies = await this.restApi.getAllMovies();
+    this.slideMovies = this.movies.slice(0, 3);
+    this.leftMoviesList = this.movies.slice(3, 6);
   }
 }

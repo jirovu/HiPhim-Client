@@ -17,20 +17,18 @@ export class HeaderComponent implements OnInit {
   constructor(private dataService: DataService,
     private apiService: RestapiService,
     private router: Router,
-    private snackBar:MatSnackBar) { }
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.dataService.email.subscribe(email => this.email = email);
   }
 
-  onLogout() {
-    this.apiService.logout()
-      .subscribe(res => {
-        this.dataService.shareEmail(null);
-        this.router.navigate(['home']);
-        this.snackBar.open(`Logout successfully`, 'Ok', {
-          duration: 3000,
-        });
-      });
+  async onLogout() {
+    await this.apiService.logout();
+    this.dataService.shareEmail(null);
+    this.router.navigate(['home']);
+    this.snackBar.open(`Logout successfully`, 'Ok', {
+      duration: 3000,
+    });
   }
 }

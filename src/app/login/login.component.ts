@@ -29,22 +29,21 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  onLoginSubmit() {
-    this.cookieService.deleteAll();
-    this.restapi.login(this.user)
-      .subscribe(res => {
-        this.dataService.shareEmail(this.authService.getEmailFromToken());
-        this.router.navigate(['personal/user'])
-        this.snackBar.open('Login successfully', 'Ok', {
-          duration: 3000,
-        });
-      },
-        err => {
-          this.status = err.status;
-          this.snackBar.open(`Failed login ${this.status}`, 'Ok', {
-            duration: 3000,
-          });
-        });
+  async onLoginSubmit() {
+    try {
+      this.cookieService.deleteAll();
+      await this.restapi.login(this.user);
+      this.dataService.shareEmail(this.authService.getEmailFromToken());
+      this.router.navigate(['personal/user'])
+      this.snackBar.open('Login successfully', 'Ok', {
+        duration: 3000,
+      });
+    } catch (error) {
+      this.status = error.status;
+      this.snackBar.open(`Failed login ${this.status}`, 'Ok', {
+        duration: 3000,
+      });
+    }
   }
 
 }

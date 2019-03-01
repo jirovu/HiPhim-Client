@@ -25,15 +25,16 @@ export class UploadBottomSheetComponent implements OnInit {
   ngOnInit() {
   }
 
-  onUpload() {
-    this.restApi.uploadFile(this.movie, this.file)
-      .subscribe(res => {
-        this.snackBar.open('Upload successfully', 'OK');
-      },
-        err => console.log(err));
+  async onUpload() {
+    try {
+      await this.restApi.uploadFile(this.movie, this.file);
+      this.snackBar.open('Upload successfully', 'OK');
+    } catch (error) {
+      this.snackBar.open('Failed to upload', 'OK');
+    }
   }
 
-  fileChange(event: any){
+  fileChange(event: any) {
     this.file = event.target.files[0];
   }
 

@@ -14,124 +14,168 @@ export class RestapiService {
   constructor(private http: HttpClient,
     private cookieService: CookieService) { }
 
-  public login(data: any): Observable<any> {
+  public login(data: any): Promise<any> {
     return this.http.post('http://localhost:1010/auth/login'
-      , data);
+      , data).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public registerUser(data: User): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:1010/auth/register', data);
+  public async registerUser(data: User): Promise<boolean> {
+    return await this.http.post<boolean>('http://localhost:1010/auth/register', data).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public identifyEmail(data: Supervisor): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:1010/auth/forget-password',
-      data);
+  public async identifyEmail(data: Supervisor): Promise<boolean> {
+    return await this.http.post<boolean>('http://localhost:1010/auth/forget-password',
+      data).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public identifyCode(data: any): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:1010/auth/identify-code',
-      data);
+  public async identifyCode(data: any): Promise<boolean> {
+    return await this.http.post<boolean>('http://localhost:1010/auth/identify-code',
+      data).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public changePassword(password: string, identifyCode: string): Observable<boolean> {
-    return this.http.post<boolean>('http://localhost:1010/auth/change-password', { password, identifyCode });
+  public async changePassword(password: string, identifyCode: string): Promise<boolean> {
+    return await this.http.post<boolean>('http://localhost:1010/auth/change-password', { password, identifyCode }).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public getAllMovies(): Observable<Array<Movie>> {
-    return this.http.get<Array<Movie>>('http://localhost:1010/home/get-all-movies');
+  public async getAllMovies(): Promise<Array<Movie>> {
+    return await this.http.get<Array<Movie>>('http://localhost:1010/home/get-all-movies').toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public getMovie(url: string): Observable<Movie> {
-    return this.http.get<Movie>(`http://localhost:1010/home/personal${url}`);
+  public async getMovie(url: string): Promise<Movie> {
+    return await this.http.get<Movie>(`http://localhost:1010/home/personal${url}`).toPromise()
+      .then(res => res)
+      .catch(err => {
+        throw err;
+      });
   }
 
-  public logout(): Observable<any> {
-    return this.http.post('http://localhost:1010/auth/logout', {}, {
+  public async logout(): Promise<any> {
+    return await this.http.post('http://localhost:1010/auth/logout', {}, {
       withCredentials: true
-    });
+    }).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public getMoviesByCategory(category: string): Observable<Array<Movie>> {
-    return this.http.get<Array<Movie>>('http://localhost:1010/home/get-movies-by-category', {
+  public async getMoviesByCategory(category: string): Promise<Array<Movie>> {
+    return await this.http.get<Array<Movie>>('http://localhost:1010/home/get-movies-by-category', {
       params: {
         category: category
       }
-    });
+    }).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public getAns(ask: string): Observable<string> {
-    return this.http.post('http://localhost:1010/home/get-ans', ask, {
+  public async getAns(ask: string): Promise<string> {
+    return await this.http.post('http://localhost:1010/home/get-ans', ask, {
       responseType: 'text'
-    });
+    }).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public getMoviesByCategoryAndName(movie: Movie): Observable<Array<Movie>> {
-    return this.http.get<Array<Movie>>('http://localhost:1010/home/get-movies-by-category-and-name', {
+  public async getMoviesByCategoryAndName(movie: Movie): Promise<Array<Movie>> {
+    return await this.http.get<Array<Movie>>('http://localhost:1010/home/get-movies-by-category-and-name', {
       params: {
         name: movie.name,
         category: movie.category
       }
-    });
+    }).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public getMoviesByName(movie: Movie): Observable<Array<Movie>> {
-    return this.http.get<Array<Movie>>('http://localhost:1010/home/get-movies-by-name', {
+  public async getMoviesByName(movie: Movie): Promise<Array<Movie>> {
+    return await this.http.get<Array<Movie>>('http://localhost:1010/home/get-movies-by-name', {
       params: {
         name: movie.name
       }
-    })
+    }).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public uploadFile(movie: Movie, file: File): Observable<boolean> {
+  public async uploadFile(movie: Movie, file: File): Promise<boolean> {
     let formData: FormData = new FormData();
     formData.append('file', file);
     formData.append('description', movie.description);
     formData.append('category', movie.category);
-    return this.http.post<boolean>('http://localhost:1010/user/uploadFile', formData);
+    return await this.http.post<boolean>('http://localhost:1010/user/uploadFile', formData).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public getAllMoviesByUserId(url: string): Observable<Array<Movie>> {
-    return this.http.get<Array<Movie>>(`http://localhost:1010/home/watch${url}`, {
-    });
+  public async getAllMoviesByUserId(url: string): Promise<Array<Movie>> {
+    return await this.http.get<Array<Movie>>(`http://localhost:1010/home/watch${url}`, {
+    }).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public changePassForUser(user: User): Observable<boolean> {
-    return this.http.put<boolean>('http://localhost:1010/user/changePassword', user);
+  public async changePassForUser(user: User): Promise<boolean> {
+    return await this.http.put<boolean>('http://localhost:1010/user/changePassword', user).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public getALlMoviesByUser(): Observable<Array<Movie>> {
-    return this.http.get<Array<Movie>>('http://localhost:1010/user/getAllMovies');
+  public async getALlMoviesByUser(): Promise<Array<Movie>> {
+    return await this.http.get<Array<Movie>>('http://localhost:1010/user/getAllMovies').toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public editMovie(movie: Movie): Observable<Array<Movie>> {
-    return this.http.put<Array<Movie>>('http://localhost:1010/user/editMovie', movie);
+  public async editMovie(movie: Movie): Promise<Array<Movie>> {
+    return await this.http.put<Array<Movie>>('http://localhost:1010/user/editMovie', movie).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public deleteMovie(movie: Movie): Observable<Array<Movie>> {
-    return this.http.post<Array<Movie>>('http://localhost:1010/user/deleteMovie', movie);
+  public async deleteMovie(movie: Movie): Promise<Array<Movie>> {
+    return await this.http.post<Array<Movie>>('http://localhost:1010/user/deleteMovie', movie).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public addComment(comment: Comment, email: string): Observable<Array<Comment>> {
+  public async addComment(comment: Comment, email: string): Promise<Array<Comment>> {
     let formData: FormData = new FormData();
     formData.append('movieId', comment.movieId);
     formData.append('content', comment.content);
     formData.append('email', email);
-    return this.http.post<Array<Comment>>('http://localhost:1010/user/addComment', formData);
+    return await this.http.post<Array<Comment>>('http://localhost:1010/user/addComment', formData).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public getAllCommentsByMovieId(movieId: string): Observable<Array<Comment>> {
-    return this.http.get<Array<Comment>>('http://localhost:1010/user/getAllComments', {
+  public async getAllCommentsByMovieId(movieId: string): Promise<Array<Comment>> {
+    return await this.http.get<Array<Comment>>('http://localhost:1010/home/getAllComments', {
       params: {
         movieId
       }
-    })
+    }).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 
-  public getUserByUserId(userId: string): Observable<User> {
-    return this.http.get<User>('http://localhost:1010/user/getUserByUserId', {
+  public async getUserByUserId(userId: string): Promise<User> {
+    return await this.http.get<User>('http://localhost:1010/home/getUserByUserId', {
       params: {
         userId
       }
-    })
+    }).toPromise()
+      .then(res => res)
+      .catch(err => { throw err });
   }
 }

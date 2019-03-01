@@ -22,49 +22,31 @@ export class PublicComponent implements OnInit {
     private router: Router,
     private data: DataService) { }
 
-  ngOnInit() {
-    this.comments = new Array<Comment>();
-    this.data.email.subscribe(email => this.user.email = email);
+  async ngOnInit() {
     var url = this.router.url.substring("/watch".length);
+    this.data.email.subscribe(email => this.user.email = email);
     this.comment.movieId = url.substring(url.indexOf("?id=") + "?id=".length);
-
-    this.restApi.getAllCommentsByMovieId(this.comment.movieId)
-      .subscribe(res => {
-        this.comments = res;
-      });
-
-    this.restApi.getMovie(url)
-      .subscribe(res => { this.movie = res },
-        err => { this.router.navigate(['not-found']) });
-
-    this.restApi.getAllMoviesByUserId(url)
-      .subscribe(res => this.movies = res,
-        err => console.error(err));
+    this.comments = await this.restApi.getAllCommentsByMovieId(this.comment.movieId);
+    this.movies = await this.restApi.getAllMoviesByUserId(url);
+    try {
+      await this.restApi.getMovie(url).then(res => this.movie = res);
+    } catch (e) {
+      this.router.navigate(['not-found']);
+    }
   }
 
-  onSelectMovie(movie: Movie) {
-    this.comments = new Array<Comment>();
+  async onSelectMovie(movie: Movie) {
     this.movie = movie;
-
-    this.restApi.getAllCommentsByMovieId(this.movie.id)
-      .subscribe(res => {
-        this.comments = res;
-      });
+    this.comments = await this.restApi.getAllCommentsByMovieId(this.movie.id);
 
     var url = `/${movie.userId}?id=${movie.id}`;
     this.comment.movieId = movie.id;
-    this.restApi.getAllMoviesByUserId(url)
-      .subscribe(res => this.movies = res,
-        err => console.error(err));
+    this.movies = await this.restApi.getAllMoviesByUserId(url);
   }
 
-  onComment() {
-    this.restApi.addComment(this.comment, this.user.email)
-      .subscribe(res => {
-        this.comment.content = "";
-        this.comments = res;
-      },
-        err => console.log(err));
+  async onComment() {
+    this.comments = await this.restApi.addComment(this.comment, this.user.email);
+    this.comment.content = "";
   }
 
 }

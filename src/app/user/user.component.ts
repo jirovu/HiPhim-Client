@@ -22,63 +22,47 @@ export class UserComponent implements OnInit {
     private restApi: RestapiService,
     private snackBar: MatSnackBar) { }
 
-  ngOnInit() {
-    this.restApi.getALlMoviesByUser()
-      .subscribe(res => {
-        this.movies = res;
-      });
+  async ngOnInit() {
+    this.movies = await this.restApi.getALlMoviesByUser();
   }
 
   openBottomSheet(): void {
     this.bottomSheet.open(UploadBottomSheetComponent);
   }
 
-  onChangePass() {
-    this.restApi.changePassForUser(this.user)
-      .subscribe(res => {
-        this.snackBar.open('Change Password successfully', 'Ok', {
-          duration: 3000,
-        });
-        this.user.password = this.repeatPass = "";
-      },
-        err => {
-          this.snackBar.open('Failed to change password', 'Ok', {
-            duration: 3000,
-          });
-          this.user.password = this.repeatPass = "";
-        });
+  async onChangePass() {
+    try {
+      await this.restApi.changePassForUser(this.user);
+      this.showSnackBar('Change Password successfully', 'Ok', 3000);
+    } catch (e) {
+      this.showSnackBar('Failed to change password', 'Ok', 3000);
+    } finally {
+      this.user.password = this.repeatPass = "";
+    }
   }
 
-  onEditMovie() {
-    this.restApi.editMovie(this.movie)
-      .subscribe(
-        res => {
-          this.movies = res;
-          this.snackBar.open('Edit movie successfully', 'Ok', {
-            duration: 3000,
-          });
-        },
-        err => {
-          this.snackBar.open('Failed to edit movie', 'Ok', {
-            duration: 3000,
-          });
-        });
+  async onEditMovie() {
+    try {
+      this.movies = await this.restApi.editMovie(this.movie);
+      this.showSnackBar('Edit movie successfully', 'Ok', 3000);
+    } catch (error) {
+      this.showSnackBar('Failed to edit movie', 'Ok', 3000);
+    }
   }
 
-  onDeleteMovie() {
-    this.restApi.deleteMovie(this.movie)
-      .subscribe(
-        res => {
-          this.movies = res;
-          this.snackBar.open('Delete successfully', 'Ok', {
-            duration: 3000,
-          });
-        },
-        err => {
-          this.snackBar.open('Failed to delete movie', 'Ok', {
-            duration: 3000,
-          });
-        });
+  async onDeleteMovie() {
+    try {
+      this.movies = await this.restApi.deleteMovie(this.movie);
+      this.showSnackBar('Delete successfully', 'Ok', 3000);
+    } catch (error) {
+      this.showSnackBar('Failed to delete movie', 'Ok', 3000);
+    }
+  }
+
+  showSnackBar(message: string, btn: string, duration: number) {
+    this.snackBar.open(message, btn, {
+      duration: duration,
+    });
   }
 
   onSelected(movie: Movie) {

@@ -27,45 +27,40 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit() {
   }
 
-  onIdentifyEmail() {
-    this.isLoad = true;
-    this.restService.identifyEmail(this.supervisor)
-      .subscribe(res => {
-        this.isValidEmail = res
-      },
-        err => {
-          this.isLoad = false;
-          this.snackBar.open('Email not found', 'Ok', {
-            duration: 3000,
-          });
-        });
-  }
-
-  onIdentifyCode() {
-    this.restService.identifyCode(this.supervisor)
-      .subscribe(res => this.isValidCode = res,
-        err => {
-          this.snackBar.open('Invalid Identify Code', 'Ok', {
-            duration: 3000,
-          })
-        });
-  }
-
-  changePassword() {
-    return this.restService.changePassword(this.user.password, this.supervisor.identifyCode)
-      .subscribe(res => {
-        console.log(res);
-        if (res) {
-          this.router.navigate(['login'])
-          this.snackBar.open('Change password successfully', 'Ok', {
-            duration: 3000,
-          });
-        } else {
-          this.snackBar.open('Changing password failed', 'Ok', {
-            duration: 3000,
-          });
-        }
+  async onIdentifyEmail() {
+    try {
+      this.isLoad = true;
+      this.isValidEmail = await this.restService.identifyEmail(this.supervisor);
+    } catch (error) {
+      this.isLoad = false;
+      this.snackBar.open('Email not found', 'Ok', {
+        duration: 3000,
       });
+    }
+  }
+
+  async onIdentifyCode() {
+    try {
+      this.isValidCode = await this.restService.identifyCode(this.supervisor);
+    } catch (error) {
+      this.snackBar.open('Invalid Identify Code', 'Ok', {
+        duration: 3000,
+      })
+    }
+  }
+
+  async changePassword() {
+    try {
+      await this.restService.changePassword(this.user.password, this.supervisor.identifyCode);
+      this.router.navigate(['login'])
+      this.snackBar.open('Change password successfully', 'Ok', {
+        duration: 3000,
+      });
+    } catch (error) {
+      this.snackBar.open('Changing password failed', 'Ok', {
+        duration: 3000,
+      });
+    }
   }
 
 }
