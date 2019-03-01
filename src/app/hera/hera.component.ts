@@ -44,7 +44,6 @@ export class HeraComponent implements OnInit, AfterContentChecked {
       map.set("left", this.message);
       map.set("right", this.heraResponse);
       this.conversation.push(map);
-      console.log(this.conversation);
       this.message = "";
     });
   }
