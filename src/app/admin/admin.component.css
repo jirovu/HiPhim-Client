@@ -22,3 +22,133 @@ a {
     text-decoration: none;
     color: black;
 }
+
+.changePassForm {
+    padding: 20px;
+}
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.changeBtnSubmit {
+    width: 100%;
+}
+
+.modal-title {
+    text-align: center;
+}
+
+.editForm {
+    padding: 20px;
+}
+
+/* List movie */
+
+.movie-list {
+    width: 100%;
+    overflow: hidden;
+}
+
+.movie-list .movie {
+    position: relative;
+    width: 25%;
+    padding: 0 15px;
+    float: left;
+    margin-bottom: 30px;
+    height: 235px;
+    overflow: hidden;
+}
+
+@media screen and (min-width: 991px) {
+    .movie-list .movie:nth-child(4n+1) {
+        clear: both;
+    }
+}
+
+@media screen and (max-width: 990px) {
+    .movie-list .movie {
+        width: 50%;
+    }
+    .movie-list .movie:nth-child(4n+1) {
+        clear: both;
+    }
+    .movie-list .movie:nth-child(2n+1) {
+        clear: both;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .movie-list .movie {
+        width: 100%;
+        clear: both;
+    }
+}
+
+.movie-list .movie .movie-poster {
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+}
+
+.movie-list .movie .movie-poster video {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+}
+
+.movie-list .movie:hover video {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    transform: scale(1.2);
+}
+
+.movie-list .movie .movie-title {
+    font-size: 1.3em;
+    font-weight: 300;
+}
+
+.movie-list .movie .movie-title a {
+    color: black;
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+    text-decoration: none;
+}
+
+.movie-list p {
+    color: #84878d;
+}
+
+.movie-list .movie .movie-title a:hover {
+    color: #ffaa3c;
+}
+
+.pagination {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+}
+
+.editBtn {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 1;
+}
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

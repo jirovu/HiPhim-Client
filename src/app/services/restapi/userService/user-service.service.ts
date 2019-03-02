@@ -28,7 +28,7 @@ export class UserServiceService {
   }
 
   public async getALlMoviesByUser(): Promise<Array<Movie>> {
-    return await this.http.get<Array<Movie>>('http://localhost:1010/user/getAllMovies').toPromise()
+    return await this.http.get<Array<Movie>>('http://localhost:1010/user/getAllMoviesByUser').toPromise()
       .then(res => res)
       .catch(err => { throw err });
   }

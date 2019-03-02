@@ -8,7 +8,7 @@
     <div class="comment-box col-7">
         <div class="type">
             <form class="input-group mb-12">
-                <input *ngIf="!user.email" disabled type="text" class="form-control" placeholder="Please login to comment"
+                <input *ngIf="!isLogedin" disabled type="text" class="form-control" placeholder="Please login to comment"
                     aria-describedby="basic-addon2">
                 <input *ngIf="user.email" type="text" class="form-control" name="comment" id="comment" [(ngModel)]="comment.content"
                     placeholder="Enter your comment" aria-describedby="basic-addon2">

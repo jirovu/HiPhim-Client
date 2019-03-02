@@ -9,19 +9,30 @@
                     <table class="table">
                         <tr>
                             <td>
-                                <span class="fas fa-edit text-info icon-padding"></span><a href=#>Edit</a>
+                                <button mat-flat-button (click)="isEdit = !isEdit; isDelete = false">
+                                    <span class="fas fa-edit text-info icon-padding"></span>Edit
+                                </button>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <span class="fa fa-trash-o text-danger text-danger icon-padding"></span><a
-                                    href=#>Delete</a>
+                                <button mat-flat-button (click)="isDelete = !isDelete; isEdit = false">
+                                    <span class="fa fa-trash-o text-danger text-danger icon-padding"></span>Delete
+                                </button>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <span class="fas fa-comments text-success"></span><a href=#>Notification</a>
-                                <span class="badge">42</span>
+                                <button mat-flat-button (click)="showLog()">
+                                    <span class="fa fa-history icon-padding"></span>Log
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button mat-flat-button (click)="showApproved()">
+                                    <span class="fa fa-thumbs-up icon-padding"></span>Browse
+                                </button>
                             </td>
                         </tr>
                     </table>
@@ -35,7 +46,9 @@
                     <table class="table">
                         <tr>
                             <td>
-                                <a href=#>Change Password</a>
+                                <button mat-flat-button color="accent" data-toggle="modal"
+                                    data-target="#changePassModal">
+                                    Change Password</button>
                             </td>
                         </tr>
                     </table>
@@ -43,9 +56,96 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-9 col-md-9">
-        <div class="card-body">
-            <h1 style="margin: auto;text-align: center">XIN CHAO ADMIN</h1>
+    <div class="col-sm-10 col-md-10">
+        <div *ngIf="movies" class="movie-list">
+            <div class="movie" *ngFor="let movie of movies | paginate: { itemsPerPage: 8, currentPage: p }">
+                <figure class="movie-poster">
+                    <button *ngIf="isEdit" class="editBtn" mat-mini-fab (click)="onSelected(movie)" data-toggle="modal"
+                        data-target="#editModal">
+                        <span class="fas fa-edit"></span>
+                    </button>
+                    <button *ngIf="isDelete" class="editBtn" mat-mini-fab (click)="onSelected(movie)"
+                        data-toggle="modal" data-target="#deleteModal">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                    <video>
+                        <source [src]="movie.url" type="video/mp4">
+                    </video>
+                </figure>
+                <div class="movie-title">
+                    <a [routerLink]="[ '/watch/' + movie.userId ]" [queryParams]="{id: movie.id}">{{movie.name}}</a>
+                </div>
+                <p>{{movie.description}}</p>
+            </div>
         </div>
+        <div *ngIf="movies" class="pagination">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </div>
+    </div>
+</div>
+
+<!-- Chang Password Modal -->
+<div class="modal fade" id="changePassModal" tabindex="-1" role="dialog" aria-labelledby="changePassModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <h3 class="modal-title">Change Password</h3>
+            <form class="changePassForm">
+                <mat-form-field class="example-full-width">
+                    <input type="password" matInput name="newPass" id="newPass" [(ngModel)]="user.password"
+                        placeholder="New password">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input type="password" matInput name="repeatPass" id="repeatPass" [(ngModel)]="repeatPass"
+                        placeholder="Repeat password">
+                </mat-form-field>
+
+                <button mat-flat-button class="changeBtnSubmit" color="primary" (click)="onChangePass()"
+                    [disabled]="!user.password || !repeatPass || user.password != repeatPass" data-dismiss="modal">
+                    CHANGE</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <h3 class="modal-title">Edit Movie</h3>
+            <form class="editForm">
+                <mat-form-field class="example-full-width">
+                    <input matInput name="movieName" id="movieName" [(ngModel)]="movie.name" [value]="movie.name"
+                        placeholder="Movie name">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width">
+                    <input matInput name="descriptionMovie" id="descriptionMovie" [(ngModel)]="movie.description"
+                        [value]="movie.description" placeholder="Movie description">
+                </mat-form-field>
+
+                <button mat-flat-button class="changeBtnSubmit" color="primary" (click)="onEditMovie()"
+                    [disabled]="!movie.name || !movie.description" data-dismiss="modal">
+                    EDIT</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <mat-card>
+            <h4 class="modal-title">Delete Movie</h4>
+            <div class="modal-content">
+                <button mat-flat-button class="changeBtnSubmit" color="warn" data-dismiss="modal"
+                    (click)="onDeleteMovie()">
+                    OK</button>
+                <button mat-flat-button class="changeBtnSubmit" color="primary" data-dismiss="modal">
+                    CANCEL</button>
+            </div>
+        </mat-card>
     </div>
 </div>

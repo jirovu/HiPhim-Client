@@ -6,6 +6,7 @@ import { User } from '../models/User';
 import { Comment } from '../models/Comment';
 import { HomeServiceService } from '../services/restapi/homeService/home-service.service';
 import { UserServiceService } from '../services/restapi/userService/user-service.service';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-public',
@@ -18,13 +19,16 @@ export class PublicComponent implements OnInit {
   comment: Comment = new Comment();
   movies: Array<Movie>;
   comments: Array<Comment>;
+  isLogedin: boolean;
 
   constructor(private homeService: HomeServiceService,
     private userService: UserServiceService,
     private router: Router,
-    private data: DataService) { }
+    private data: DataService,
+    private autService: AuthService) { }
 
   async ngOnInit() {
+    this.isLogedin = this.autService.isAuthenticated();
     var url = this.router.url.substring("/watch".length);
     this.data.email.subscribe(email => this.user.email = email);
     this.comment.movieId = url.substring(url.indexOf("?id=") + "?id=".length);

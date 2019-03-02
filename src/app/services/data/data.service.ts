@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 
 @Injectable({
@@ -9,10 +10,14 @@ export class DataService {
   private emailBehaviorSubject = new BehaviorSubject<any>(null);
   email = this.emailBehaviorSubject.asObservable();
 
-  constructor() {
+  constructor(private authService: AuthService) {
   }
 
   public shareEmail(email: string) {
-    this.emailBehaviorSubject.next(email);
+    if (this.authService.isAuthenticated()) {
+      this.emailBehaviorSubject.next(email);
+    } else {
+      this.emailBehaviorSubject.next(email);
+    }
   }
 }
