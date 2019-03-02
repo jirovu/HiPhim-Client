@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/User';
-import { RestapiService } from '../services/restapi/restapi.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { AuthServiceService } from '../services/restapi/authService/auth-service.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   user = new User();
 
-  constructor(private restapi: RestapiService,
+  constructor(private authService: AuthServiceService,
     private router: Router,
     private snackBar: MatSnackBar) { }
 
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
 
   async onSubmit() {
     try {
-      await this.restapi.registerUser(this.user);
+      await this.authService.registerUser(this.user);
       this.router.navigate(['login']);
       this.snackBar.open('Register successfully', 'Ok', {
         duration: 3000,

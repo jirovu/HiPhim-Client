@@ -2,8 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatBottomSheet, MatSnackBar } from '@angular/material';
 import { UploadBottomSheetComponent } from '../upload-bottom-sheet/upload-bottom-sheet.component';
 import { User } from '../models/User';
-import { RestapiService } from '../services/restapi/restapi.service';
 import { Movie } from '../models/Movie';
+import { UserServiceService } from '../services/restapi/userService/user-service.service';
 
 @Component({
   selector: 'app-user',
@@ -19,11 +19,11 @@ export class UserComponent implements OnInit {
   isDelete: boolean = false;
 
   constructor(private bottomSheet: MatBottomSheet,
-    private restApi: RestapiService,
+    private userService: UserServiceService,
     private snackBar: MatSnackBar) { }
 
   async ngOnInit() {
-    this.movies = await this.restApi.getALlMoviesByUser();
+    this.movies = await this.userService.getALlMoviesByUser();
   }
 
   openBottomSheet(): void {
@@ -32,7 +32,7 @@ export class UserComponent implements OnInit {
 
   async onChangePass() {
     try {
-      await this.restApi.changePassForUser(this.user);
+      await this.userService.changePassForUser(this.user);
       this.showSnackBar('Change Password successfully', 'Ok', 3000);
     } catch (e) {
       this.showSnackBar('Failed to change password', 'Ok', 3000);
@@ -43,7 +43,7 @@ export class UserComponent implements OnInit {
 
   async onEditMovie() {
     try {
-      this.movies = await this.restApi.editMovie(this.movie);
+      this.movies = await this.userService.editMovie(this.movie);
       this.showSnackBar('Edit movie successfully', 'Ok', 3000);
     } catch (error) {
       this.showSnackBar('Failed to edit movie', 'Ok', 3000);
@@ -52,7 +52,7 @@ export class UserComponent implements OnInit {
 
   async onDeleteMovie() {
     try {
-      this.movies = await this.restApi.deleteMovie(this.movie);
+      this.movies = await this.userService.deleteMovie(this.movie);
       this.showSnackBar('Delete successfully', 'Ok', 3000);
     } catch (error) {
       this.showSnackBar('Failed to delete movie', 'Ok', 3000);

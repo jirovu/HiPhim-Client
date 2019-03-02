@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/Movie';
-import { RestapiService } from '../services/restapi/restapi.service';
+import { HomeServiceService } from '../services/restapi/homeService/home-service.service';
 
 @Component({
   selector: 'app-home',
@@ -14,10 +14,10 @@ export class HomeComponent implements OnInit {
   firstMovie: Movie;
   leftMoviesList: Array<Movie> = [];
 
-  constructor(private restApi: RestapiService) { }
+  constructor(private homeService: HomeServiceService) { }
 
   async ngOnInit() {
-    this.movies = await this.restApi.getAllMovies();
+    this.movies = await this.homeService.getLimit8Movies();
     this.slideMovies = this.movies.slice(0, 3);
     this.leftMoviesList = this.movies.slice(3, 6);
   }

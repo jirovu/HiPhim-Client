@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Supervisor } from '../models/Supervisor';
-import { RestapiService } from '../services/restapi/restapi.service';
 import { User } from '../models/User';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { AuthServiceService } from '../services/restapi/authService/auth-service.service';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class ForgotPasswordComponent implements OnInit {
   replacePassword: string;
   isLoad: boolean = false;
 
-  constructor(private restService: RestapiService,
+  constructor(private authServiceService: AuthServiceService,
     private router: Router,
     private snackBar: MatSnackBar) { }
 
@@ -30,7 +30,7 @@ export class ForgotPasswordComponent implements OnInit {
   async onIdentifyEmail() {
     try {
       this.isLoad = true;
-      this.isValidEmail = await this.restService.identifyEmail(this.supervisor);
+      this.isValidEmail = await this.authServiceService.identifyEmail(this.supervisor);
     } catch (error) {
       this.isLoad = false;
       this.snackBar.open('Email not found', 'Ok', {
@@ -41,7 +41,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   async onIdentifyCode() {
     try {
-      this.isValidCode = await this.restService.identifyCode(this.supervisor);
+      this.isValidCode = await this.authServiceService.identifyCode(this.supervisor);
     } catch (error) {
       this.snackBar.open('Invalid Identify Code', 'Ok', {
         duration: 3000,
@@ -51,7 +51,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   async changePassword() {
     try {
-      await this.restService.changePassword(this.user.password, this.supervisor.identifyCode);
+      await this.authServiceService.changePassword(this.user.password, this.supervisor.identifyCode);
       this.router.navigate(['login'])
       this.snackBar.open('Change password successfully', 'Ok', {
         duration: 3000,

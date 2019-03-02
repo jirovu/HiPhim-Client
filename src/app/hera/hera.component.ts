@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild, AfterContentChecked } from '@angular/core';
-import { RestapiService } from '../services/restapi/restapi.service';
+import { HomeServiceService } from '../services/restapi/homeService/home-service.service';
 
 @Component({
   selector: 'app-hera',
@@ -15,7 +15,7 @@ export class HeraComponent implements OnInit, AfterContentChecked {
 
   @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
-  constructor(private restApi: RestapiService) { }
+  constructor(private homeService: HomeServiceService) { }
 
   ngOnInit() {
     this.scrollToBottom();
@@ -37,7 +37,7 @@ export class HeraComponent implements OnInit, AfterContentChecked {
 
   async onSend() {
     this.isRight = !this.isRight;
-    this.heraResponse = await this.restApi.getAns(this.message);
+    this.heraResponse = await this.homeService.getAns(this.message);
     this.conversation.push();
     let map = new Map<String, String>();
     map.set("left", this.message);

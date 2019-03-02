@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/Movie';
-import { RestapiService } from '../services/restapi/restapi.service';
-import { Router } from '@angular/router';
+import { HomeServiceService } from '../services/restapi/homeService/home-service.service';
 
 @Component({
   selector: 'app-movie-review',
@@ -20,28 +19,28 @@ export class MovieReviewComponent implements OnInit {
   p: number = 1;
   movie: Movie = new Movie();
 
-  constructor(private restApi: RestapiService) { }
+  constructor(private homeService: HomeServiceService) { }
 
   async ngOnInit() {
     this.movie.category = 'all';
-    this.movies = await this.restApi.getAllMovies();
+    this.movies = await this.homeService.getAllMovies();
   }
 
   async onSelect(event: any) {
     this.movie.category = event.source.value;
     if (this.movie.category === 'all') {
-      this.movies = await this.restApi.getAllMovies();
+      this.movies = await this.homeService.getAllMovies();
     } else {
-      this.movies = await this.restApi.getMoviesByCategory(this.movie.category);
+      this.movies = await this.homeService.getMoviesByCategory(this.movie.category);
     }
   }
 
   async onSearch() {
     if (this.movie.category == 'all') {
-      this.movies = await this.restApi.getMoviesByName(this.movie);
+      this.movies = await this.homeService.getMoviesByName(this.movie);
       this.movie.name = null;
     } else {
-      this.movies = await this.restApi.getMoviesByCategoryAndName(this.movie);
+      this.movies = await this.homeService.getMoviesByCategoryAndName(this.movie);
       this.movie.name = null;
     }
   }

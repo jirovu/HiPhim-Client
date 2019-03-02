@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { RestapiService } from '../services/restapi/restapi.service';
 import { User } from '../models/User';
 import { MatSnackBar } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { DataService } from '../services/data/data.service';
 import { AuthService } from '../services/auth/auth.service';
+import { AuthServiceService } from '../services/restapi/authService/auth-service.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   status: number;
   role: string;
 
-  constructor(public restapi: RestapiService,
+  constructor(public authServiceService: AuthServiceService,
     private snackBar: MatSnackBar,
     private router: Router,
     private cookieService: CookieService,
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   async onLoginSubmit() {
     try {
       this.cookieService.deleteAll();
-      await this.restapi.login(this.user);
+      await this.authServiceService.login(this.user);
       this.dataService.shareEmail(this.authService.getEmailFromToken());
       this.router.navigate(['personal/user'])
       this.snackBar.open('Login successfully', 'Ok', {

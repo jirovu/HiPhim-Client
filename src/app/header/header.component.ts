@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth/auth.service';
 import { DataService } from '../services/data/data.service';
-import { RestapiService } from '../services/restapi/restapi.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { AuthServiceService } from '../services/restapi/authService/auth-service.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +14,7 @@ export class HeaderComponent implements OnInit {
   email: string;
 
   constructor(private dataService: DataService,
-    private apiService: RestapiService,
+    private authServiceService: AuthServiceService,
     private router: Router,
     private snackBar: MatSnackBar) { }
 
@@ -24,7 +23,7 @@ export class HeaderComponent implements OnInit {
   }
 
   async onLogout() {
-    await this.apiService.logout();
+    await this.authServiceService.logout();
     this.dataService.shareEmail(null);
     this.router.navigate(['home']);
     this.snackBar.open(`Logout successfully`, 'Ok', {

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatBottomSheetRef, MatSnackBar } from '@angular/material';
 import { Movie } from '../models/Movie';
-import { RestapiService } from '../services/restapi/restapi.service';
+import { UserServiceService } from '../services/restapi/userService/user-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload-bottom-sheet',
@@ -18,17 +19,18 @@ export class UploadBottomSheetComponent implements OnInit {
   movie: Movie = new Movie();
   file: File;
 
-  constructor(private bottomSheetRef: MatBottomSheetRef<UploadBottomSheetComponent>,
-    private restApi: RestapiService,
-    private snackBar: MatSnackBar) { }
+  constructor(private userService: UserServiceService,
+    private snackBar: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit() {
   }
 
   async onUpload() {
     try {
-      await this.restApi.uploadFile(this.movie, this.file);
+      await this.userService.uploadFile(this.movie, this.file);
       this.snackBar.open('Upload successfully', 'OK');
+      this.router.navigate(['/personal/user']);
     } catch (error) {
       this.snackBar.open('Failed to upload', 'OK');
     }

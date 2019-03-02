@@ -8,7 +8,9 @@
     <div class="comment-box col-7">
         <div class="type">
             <form class="input-group mb-12">
-                <input type="text" class="form-control" name="comment" id="comment" [(ngModel)]="comment.content"
+                <input *ngIf="!user.email" disabled type="text" class="form-control" placeholder="Please login to comment"
+                    aria-describedby="basic-addon2">
+                <input *ngIf="user.email" type="text" class="form-control" name="comment" id="comment" [(ngModel)]="comment.content"
                     placeholder="Enter your comment" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button [disabled]="!comment.content || !user.email" class="btn btn-outline-info"

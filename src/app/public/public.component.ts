@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/Movie';
-import { RestapiService } from '../services/restapi/restapi.service';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data/data.service';
 import { User } from '../models/User';
 import { Comment } from '../models/Comment';
+import { HomeServiceService } from '../services/restapi/homeService/home-service.service';
+import { UserServiceService } from '../services/restapi/userService/user-service.service';
 
 @Component({
   selector: 'app-public',
@@ -18,7 +19,8 @@ export class PublicComponent implements OnInit {
   movies: Array<Movie>;
   comments: Array<Comment>;
 
-  constructor(private restApi: RestapiService,
+  constructor(private homeService: HomeServiceService,
+    private userService: UserServiceService,
     private router: Router,
     private data: DataService) { }
 
@@ -26,10 +28,10 @@ export class PublicComponent implements OnInit {
     var url = this.router.url.substring("/watch".length);
     this.data.email.subscribe(email => this.user.email = email);
     this.comment.movieId = url.substring(url.indexOf("?id=") + "?id=".length);
-    this.comments = await this.restApi.getAllCommentsByMovieId(this.comment.movieId);
-    this.movies = await this.restApi.getAllMoviesByUserId(url);
+    this.comments = await this.homeService.getAllCommentsByMovieId(this.comment.movieId);
+    this.movies = await this.homeService.getAllMoviesByUserId(url);
     try {
-      await this.restApi.getMovie(url).then(res => this.movie = res);
+      await this.homeService.getMovie(url).then(res => this.movie = res);
     } catch (e) {
       this.router.navigate(['not-found']);
     }
@@ -37,15 +39,15 @@ export class PublicComponent implements OnInit {
 
   async onSelectMovie(movie: Movie) {
     this.movie = movie;
-    this.comments = await this.restApi.getAllCommentsByMovieId(this.movie.id);
+    this.comments = await this.homeService.getAllCommentsByMovieId(this.movie.id);
 
     var url = `/${movie.userId}?id=${movie.id}`;
     this.comment.movieId = movie.id;
-    this.movies = await this.restApi.getAllMoviesByUserId(url);
+    this.movies = await this.homeService.getAllMoviesByUserId(url);
   }
 
   async onComment() {
-    this.comments = await this.restApi.addComment(this.comment, this.user.email);
+    this.comments = await this.userService.addComment(this.comment, this.user.email);
     this.comment.content = "";
   }
 
