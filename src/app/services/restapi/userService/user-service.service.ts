@@ -16,6 +16,7 @@ export class UserServiceService {
     formData.append('file', file);
     formData.append('description', movie.description);
     formData.append('category', movie.category);
+    console.log(formData);
     return await this.http.post<boolean>('http://localhost:1010/user/uploadFile', formData).toPromise()
       .then(res => res)
       .catch(err => { throw err });
