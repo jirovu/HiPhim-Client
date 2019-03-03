@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/User';
 import { Movie } from '../models/Movie';
-import { MatBottomSheet, MatSnackBar } from '@angular/material';
-import { UserServiceService } from '../services/restapi/userService/user-service.service';
-import { UploadBottomSheetComponent } from '../upload-bottom-sheet/upload-bottom-sheet.component';
+import { MatSnackBar } from '@angular/material';
 import { AdminService } from '../services/restapi/adminService/admin.service';
+import { Log } from '../models/Log';
 
 @Component({
   selector: 'app-admin',
@@ -16,20 +15,32 @@ export class AdminComponent implements OnInit {
   repeatPass: string;
   movies: Array<Movie>;
   movie: Movie = new Movie();
+  logs: Array<Log>;
   isEdit: boolean = false;
   isDelete: boolean = false;
+  isBrowse: boolean = false;
+  isApproved: boolean = false;
 
-  constructor(private userService: UserServiceService,
-    private adminService: AdminService,
+  constructor(private adminService: AdminService,
     private snackBar: MatSnackBar) { }
 
   async ngOnInit() {
+    this.isBrowse = false;
+    this.isEdit = false;
+    this.isDelete = false;
+    this.movies = await this.adminService.getAllMovies();
+  }
+
+  async onAll() {
+    this.isBrowse = false;
+    this.isEdit = false;
+    this.isDelete = false;
     this.movies = await this.adminService.getAllMovies();
   }
 
   async onChangePass() {
     try {
-      await this.userService.changePassForUser(this.user);
+      await this.adminService.changePassForUser(this.user);
       this.showSnackBar('Change Password successfully', 'Ok', 3000);
     } catch (e) {
       this.showSnackBar('Failed to change password', 'Ok', 3000);
@@ -38,12 +49,29 @@ export class AdminComponent implements OnInit {
     }
   }
 
-  showLog() {
-
+  async showLog() {
+    this.isEdit = false;
+    this.isDelete = false;
+    this.logs = await this.adminService.getAllLogs();
   }
 
-  showApproved() {
+  async showBrowse() {
+    this.movies = await this.adminService.getAllNotApprovedMovies();
+    if (this.movies.length > 0) {
+      this.isBrowse = true;
+    } else {
+      this.isBrowse = false;
+    }
+  }
 
+  async onBrowse(movie: Movie) {
+    try {
+      this.movies = await this.adminService.browseMovie(movie);
+      this.showSnackBar('Browse movie successfully', 'Ok', 3000);
+      this.isApproved = false;
+    } catch (error) {
+      this.showSnackBar('Failed to browse movie', 'Ok', 3000);
+    }
   }
 
   async onEditMovie() {

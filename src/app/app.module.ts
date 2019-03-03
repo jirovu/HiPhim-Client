@@ -39,6 +39,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { MatSelectModule } from '@angular/material/select';
 import { HeraComponent } from './hera/hera.component';
 import { UploadBottomSheetComponent } from './upload-bottom-sheet/upload-bottom-sheet.component';
+import { PrivateComponent } from './private/private.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { UploadBottomSheetComponent } from './upload-bottom-sheet/upload-bottom-
     MovieReviewComponent,
     HeraComponent,
     UploadBottomSheetComponent,
+    PrivateComponent,
   ],
   imports: [
     BrowserModule,

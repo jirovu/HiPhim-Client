@@ -9,6 +9,13 @@
                     <table class="table">
                         <tr>
                             <td>
+                                <button mat-flat-button (click)="onAll()">
+                                    <span class="fas fa-video text-info icon-padding"></span> All
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <button mat-flat-button (click)="isEdit = !isEdit; isDelete = false">
                                     <span class="fas fa-edit text-info icon-padding"></span>Edit
                                 </button>
@@ -23,15 +30,23 @@
                         </tr>
                         <tr>
                             <td>
-                                <button mat-flat-button (click)="showLog()">
+                                <button mat-flat-button (click)="showLog()" data-toggle="modal" data-target="#logModal">
                                     <span class="fa fa-history icon-padding"></span>Log
                                 </button>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <button mat-flat-button (click)="showApproved()">
-                                    <span class="fa fa-thumbs-up icon-padding"></span>Browse
+                                <button mat-flat-button (click)="showBrowse()">
+                                    <span class="fab fa-safari icon-padding"></span>Browse
+                                </button>
+                            </td>
+                        </tr>
+                        <tr *ngIf="isBrowse">
+                            <td>
+                                <button mat-flat-button
+                                    (click)="isApproved = !isApproved; isDelete = false; isEdit = false">
+                                    <span class="fa fa-thumbs-up icon-padding"></span>Approved
                                 </button>
                             </td>
                         </tr>
@@ -68,17 +83,25 @@
                         data-toggle="modal" data-target="#deleteModal">
                         <span class="fa fa-trash-o"></span>
                     </button>
+                    <button *ngIf="isApproved" class="editBtn" mat-mini-fab (click)="onBrowse(movie)">
+                        <span class="fa fa-thumbs-up"></span>
+                    </button>
                     <video>
                         <source [src]="movie.url" type="video/mp4">
                     </video>
                 </figure>
                 <div class="movie-title">
-                    <a [routerLink]="[ '/watch/' + movie.userId ]" [queryParams]="{id: movie.id}">{{movie.name}}</a>
+                    <span [ngSwitch]="isBrowse">
+                        <a *ngSwitchCase="true" [routerLink]="[ '/private/' + movie.userId ]"
+                            [queryParams]="{id: movie.id}">{{movie.name}}</a>
+                        <a *ngSwitchCase="false" [routerLink]="[ '/watch/' + movie.userId ]"
+                            [queryParams]="{id: movie.id}">{{movie.name}}</a>
+                    </span>
                 </div>
                 <p>{{movie.description}}</p>
             </div>
         </div>
-        <div *ngIf="movies" class="pagination">
+        <div *ngIf="movies.length > 0" class="pagination">
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
     </div>
@@ -145,6 +168,23 @@
                     OK</button>
                 <button mat-flat-button class="changeBtnSubmit" color="primary" data-dismiss="modal">
                     CANCEL</button>
+            </div>
+        </mat-card>
+    </div>
+</div>
+
+<!-- Log Modal -->
+<div class="modal fade" id="logModal" tabindex="-1" role="dialog" aria-labelledby="logModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <mat-card>
+            <h4 class="modal-title">History</h4>
+            <div class="modal-content">
+                <ul class="list-group" *ngFor="let log of logs">
+                    <li class="list-group-item">
+                        <b>{{log.userEmail}}</b><br> {{log.action}} at <small
+                            style="color:blue">{{log.timestamp}}</small>
+                    </li>
+                </ul>
             </div>
         </mat-card>
     </div>

@@ -1,0 +1,5 @@
+<div class="container video-box" *ngIf="movie">
+  <video width="100%" src="{{movie.url}}" autoplay controls></video>
+  <h4 *ngIf="movie" style="color:red">{{movie.name}}</h4>
+  <h4 *ngIf="movie">{{movie.description}}</h4>
+</div>

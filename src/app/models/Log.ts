@@ -1,6 +1,6 @@
 export class Log {
     id: string;
-    userId: string;
+    userEmail: string;
     timestamp: Date;
-    actions: Array<string>;
+    action: string;
 }

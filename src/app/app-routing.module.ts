@@ -11,6 +11,7 @@ import { AdminGuardService } from './services/guard/admin-guard/admin-guard.serv
 import { UserGuardService } from './services/guard/user-guard/user-guard.service';
 import { PublicComponent } from './public/public.component';
 import { MovieReviewComponent } from './movie-review/movie-review.component';
+import { PrivateComponent } from './private/private.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -47,6 +48,16 @@ const routes: Routes = [
         {
           path: ':userId',
           component: PublicComponent
+        }
+      ]
+  },
+  {
+    path: 'private',
+    children:
+      [
+        {
+          path: ':userId',
+          component: PrivateComponent
         }
       ]
   },

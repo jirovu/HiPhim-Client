@@ -32,10 +32,10 @@ export class PublicComponent implements OnInit {
     var url = this.router.url.substring("/watch".length);
     this.data.email.subscribe(email => this.user.email = email);
     this.comment.movieId = url.substring(url.indexOf("?id=") + "?id=".length);
-    this.comments = await this.homeService.getAllCommentsByMovieId(this.comment.movieId);
-    this.movies = await this.homeService.getAllMoviesByUserId(url);
     try {
       await this.homeService.getMovie(url).then(res => this.movie = res);
+      this.comments = await this.homeService.getAllCommentsByMovieId(this.comment.movieId);
+      this.movies = await this.homeService.getAllMoviesByUserId(url);
     } catch (e) {
       this.router.navigate(['not-found']);
     }
