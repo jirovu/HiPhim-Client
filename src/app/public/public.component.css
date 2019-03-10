@@ -1,4 +1,5 @@
-ul, li {
+ul,
+li {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -42,7 +43,7 @@ ul, li {
     padding: 5px;
     height: 100%;
     color: white;
-    background-color: black;
+    background-color: #13547a;
     border-radius: 50%;
 }
 

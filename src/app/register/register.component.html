@@ -1,20 +1,11 @@
-<mat-card>
-  <div class="form-login">
-    <img src="../../assets/logo.jpg" width="100%" alt="" srcset="">
+<div class="form-login wrap-login100 p-t-85 p-b-20">
+    <div class="login100-pic js-tilt" data-tilt>
+        <img src="../../assets/images/img-01.png" alt="IMG">
+    </div>
     <form class="example-form" (ngSubmit)="onSubmit()">
-      <mat-form-field class="example-full-width">
         <input type="email" name="email" [(ngModel)]="user.email" required matInput placeholder="Email">
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
         <input type="password" name="password" [(ngModel)]="user.password" required matInput placeholder="Password">
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
         <input type="text" name="name" [(ngModel)]="user.name" required matInput placeholder="Name">
-      </mat-form-field>
-
-      <button type="submit" [disabled]="!user.email || !user.password" mat-button><b>REGISTER</b></button>
+        <button type="submit" [disabled]="!user.email || !user.password" mat-button><b>REGISTER</b></button>
     </form>
-  </div>
-</mat-card>
+</div>

@@ -1,16 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
-body{
-    background-image: url('./assets/4.jpg');
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-attachment: fixed;
+body {
+    background: -webkit-linear-gradient(left, #525151, #080808);
     margin: auto;
     height: 100%;
     font-family: "Roboto", "Open Sans", sans-serif;
 }
-html{
+
+html {
     height: 100%;
 }

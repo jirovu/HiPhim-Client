@@ -8,13 +8,10 @@
     <div class="comment-box col-7">
         <div class="type">
             <form class="input-group mb-12">
-                <input *ngIf="!isLogedin" disabled type="text" class="form-control" placeholder="Please login to comment"
-                    aria-describedby="basic-addon2">
-                <input *ngIf="user.email" type="text" class="form-control" name="comment" id="comment" [(ngModel)]="comment.content"
-                    placeholder="Enter your comment" aria-describedby="basic-addon2">
+                <input *ngIf="!isLogedin" disabled type="text" class="form-control" placeholder="Please login to comment" aria-describedby="basic-addon2">
+                <input *ngIf="user.email" type="text" class="form-control" name="comment" id="comment" [(ngModel)]="comment.content" placeholder="Enter your comment" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                    <button [disabled]="!comment.content || !user.email" class="btn btn-outline-info"
-                        (click)="onComment()">
+                    <button [disabled]="!comment.content || !user.email" class="btn btn-outline-info" (click)="onComment()">
                         <i class="fas fa-share-square"></i>
                     </button>
                 </div>
@@ -25,7 +22,7 @@
             <ul class="list-group">
                 <li style="padding:10px;" class="list-group-item" *ngFor="let comment of comments ; let i = index">
                     <div class="avt">
-                        <i class="fas fa-user"></i>
+                        {{comment.nameUser.toUpperCase().substring(0, 1)}}
                     </div>
                     <div class="comment-content">
                         <p style="padding: 0px; margin: 0px;color:red;">{{comment.nameUser}}</p>
@@ -39,8 +36,7 @@
     <div *ngIf="movies" class="list-movie col-5 row">
         <ul>
             <li class="movie-item col-12" *ngFor="let movie of movies">
-                <a class="link-movie" [routerLink]="[ '/watch/' + movie.userId ]" [queryParams]="{id: movie.id}"
-                    (click)="onSelectMovie(movie)">
+                <a class="link-movie" [routerLink]="[ '/watch/' + movie.userId ]" [queryParams]="{id: movie.id}" (click)="onSelectMovie(movie)">
                     <video class="col-6" width="100%" src="{{movie.url}}"></video>
                     <div class="col-6" style="float: right">
                         <p style="margin: 0;padding: 0">{{movie.name}}</p>

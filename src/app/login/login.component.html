@@ -1,18 +1,22 @@
-<mat-card>
-  <div class="form-login">
-    <img src="../../assets/logo.jpg" width="100%" alt="" srcset="">
+<div class="form-login wrap-login100 p-t-85 p-b-20">
+    <div class="login100-pic js-tilt" data-tilt>
+        <img src="../../assets/images/img-01.png" alt="IMG">
+    </div>
     <form class="example-form" (ngSubmit)="onLoginSubmit()">
-      <mat-form-field class="example-full-width">
         <input type="email" name="email" [(ngModel)]="user.email" required matInput placeholder="Email">
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
         <input type="password" name="password" [(ngModel)]="user.password" required matInput placeholder="Password">
-      </mat-form-field>
-
-      <button type="submit" mat-button><b>LOGIN</b></button>
+        <button type="submit" mat-button><b>LOGIN</b></button>
     </form>
     <br>
-    <a [routerLink]="[ '/forgot-password' ]" routerLinkActive="active">Forgot Password</a>
-  </div>
-</mat-card>
+    <ul class="login-more p-t-190">
+        <li class="m-b-8">
+            <span class="txt1">Forgot </span>
+            <a class="txt2" [routerLink]="[ '/forgot-password' ]" routerLinkActive="active">Username / Password?</a>
+        </li>
+
+        <li>
+            <span class="txt1">Don’t have an account?</span>
+            <a class="txt2" [routerLink]="[ '/register' ]" routerLinkActive="active">Sign up</a>
+        </li>
+    </ul>
+</div>

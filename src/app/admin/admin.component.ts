@@ -13,7 +13,7 @@ import { Log } from '../models/Log';
 export class AdminComponent implements OnInit {
   user: User = new User();
   repeatPass: string;
-  movies: Array<Movie>;
+  movies: Array<Movie> = new Array<Movie>();
   movie: Movie = new Movie();
   logs: Array<Log>;
   isEdit: boolean = false;
