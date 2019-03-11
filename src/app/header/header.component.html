@@ -1,36 +1,32 @@
 <div class="container">
-  <nav class="navbar mb-5">
-    <a [routerLink]="[ '' ]" class="branding">
-      <img src="https://demo.themezy.com/system/resources/demo_themes/000/000/010//images/logo@2x.png" alt="" srcset="">
-      <div class="log-copy">
-        <h5 class="title-web">HiPhim</h5>
-        <p>Đội ngũ lập trình có tâm</p>
-      </div>
-    </a>
-    <div class="navbar-expand ml-auto navbar-nav">
-      <div class="navbar-nav item-bar">
-        <div class="navbar-expand mr-auto">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link  custom-color home" [routerLink]="[ '/home' ]"
-              routerLinkActive="active">Home</a>
-            <a class="nav-item nav-link  custom-color" [routerLink]="[ '/movie-review' ]"
-              routerLinkActive="active">Movie Review</a>
-            <a *ngIf="!email" class="nav-item nav-link  custom-color" [routerLink]="[ '/register' ]"
-              routerLinkActive="active">Register</a>
-            <a *ngIf="!email" class="nav-item nav-link  custom-color" [routerLink]="[ '/login' ]"
-              routerLinkActive="active">Login</a>
-            <div *ngIf="email" class="dropdown">
-              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+    <nav class="navbar mb-5">
+        <a [routerLink]="[ '' ]" class="branding">
+            <img src="https://demo.themezy.com/system/resources/demo_themes/000/000/010//images/logo@2x.png" alt="" srcset="">
+            <div class="log-copy">
+                <h5 class="title-web">HiPhim</h5>
+                <p>Đội ngũ lập trình có tâm</p>
+            </div>
+        </a>
+        <div class="navbar-expand ml-auto navbar-nav">
+            <div class="navbar-nav item-bar">
+                <div class="navbar-expand mr-auto">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link  custom-color home" [routerLink]="[ '/home' ]" routerLinkActive="active">Home</a>
+                        <a class="nav-item nav-link  custom-color" [routerLink]="[ '/movie-review' ]" routerLinkActive="active">Movie Review</a>
+                        <a *ngIf="!email" class="nav-item nav-link  custom-color" [routerLink]="[ '/register' ]" routerLinkActive="active">Register</a>
+                        <a *ngIf="!email" class="nav-item nav-link  custom-color" [routerLink]="[ '/login' ]" routerLinkActive="active">Login</a>
+                        <div *ngIf="email" class="dropdown">
+                            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                 <a>{{email}}</a>
               </button>
-              <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" style="text-decoration: none;" [routerLink]="[ '/personal/user' ]">Profile</a>
-                <a class="dropdown-item" [routerLink]="['/home']" (click)="onLogout()">Logout</a>
-              </div>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" style="text-decoration: none;" [routerLink]="[ '/personal/user' ]">Profile</a>
+                                <a class="dropdown-item" [routerLink]="['/home']" (click)="onLogout()">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </nav>
+    </nav>
 </div>

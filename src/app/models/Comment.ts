@@ -3,4 +3,5 @@ export class Comment {
     nameUser: string;
     movieId: string;
     content: string;
+    timestamp: string;
 }

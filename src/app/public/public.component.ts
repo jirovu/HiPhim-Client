@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Movie } from '../models/Movie';
-import { Router } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
+import { Event as NavigationEvent } from "@angular/router";
 import { DataService } from '../services/data/data.service';
 import { User } from '../models/User';
+import { filter } from "rxjs/operators";
 import { Comment } from '../models/Comment';
 import { HomeServiceService } from '../services/restapi/homeService/home-service.service';
 import { UserServiceService } from '../services/restapi/userService/user-service.service';
@@ -25,11 +27,32 @@ export class PublicComponent implements OnInit {
     private userService: UserServiceService,
     private router: Router,
     private data: DataService,
-    private autService: AuthService) { }
+    private autService: AuthService) {
+    router.events
+      .pipe(
+        filter(
+          (event: NavigationEvent) => {
+            return (event instanceof NavigationStart);
+          }
+        )
+      )
+      .subscribe(
+        (event: NavigationStart) => {
+          if (event.url.startsWith('/watch')) {
+            let url = event.url.substring("/watch".length);
+            this.handleUrl(url);
+          }
+        }
+      );
+  }
 
   async ngOnInit() {
     this.isLogedin = this.autService.isAuthenticated();
-    var url = this.router.url.substring("/watch".length);
+    let url = this.router.url.substring("/watch".length);
+    await this.handleUrl(url);
+  }
+
+  private async handleUrl(url: string) {
     this.data.email.subscribe(email => this.user.email = email);
     this.comment.movieId = url.substring(url.indexOf("?id=") + "?id=".length);
     try {
@@ -45,7 +68,7 @@ export class PublicComponent implements OnInit {
     this.movie = movie;
     this.comments = await this.homeService.getAllCommentsByMovieId(this.movie.id);
 
-    var url = `/${movie.userId}?id=${movie.id}`;
+    let url = `/${movie.userId}?id=${movie.id}`;
     this.comment.movieId = movie.id;
     this.movies = await this.homeService.getAllMoviesByUserId(url);
   }

@@ -49,6 +49,7 @@ a {
     padding: 20px;
 }
 
+
 /* List movie */
 
 .movie-list {
@@ -151,4 +152,9 @@ a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.log-modal {
+    height: 500px;
+    overflow: scroll;
 }

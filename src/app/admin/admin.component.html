@@ -1,8 +1,7 @@
 <div class="row">
     <div class="col-sm-2 col-md-2">
         <div class="panel-group" id="accordion">
-            <button class="toggle-btn" mat-raised-button color="accent" data-toggle="collapse" data-parent="#accordion"
-                href="#collapseOne"><span class="fa fa-list-alt icon-padding">
+            <button class="toggle-btn" mat-raised-button color="accent" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="fa fa-list-alt icon-padding">
                 </span>Content</button>
             <div id="collapseOne" class="panel-collapse collapse in">
                 <div class="card-body">
@@ -44,8 +43,7 @@
                         </tr>
                         <tr *ngIf="isBrowse">
                             <td>
-                                <button mat-flat-button
-                                    (click)="isApproved = !isApproved; isDelete = false; isEdit = false">
+                                <button mat-flat-button (click)="isApproved = !isApproved; isDelete = false; isEdit = false">
                                     <span class="fa fa-thumbs-up icon-padding"></span>Approved
                                 </button>
                             </td>
@@ -53,16 +51,14 @@
                     </table>
                 </div>
             </div>
-            <button class="toggle-btn" mat-raised-button color="primary" data-toggle="collapse" data-parent="#accordion"
-                href="#collapseThree"><span class="fa fa-user icon-padding">
+            <button class="toggle-btn" mat-raised-button color="primary" data-toggle="collapse" data-parent="#accordion" href="#collapseThree"><span class="fa fa-user icon-padding">
                 </span>Account</button>
             <div id="collapseThree" class="panel-collapse collapse">
                 <div class="card-body">
                     <table class="table">
                         <tr>
                             <td>
-                                <button mat-flat-button color="accent" data-toggle="modal"
-                                    data-target="#changePassModal">
+                                <button mat-flat-button color="accent" data-toggle="modal" data-target="#changePassModal">
                                     Change Password</button>
                             </td>
                         </tr>
@@ -75,12 +71,10 @@
         <div *ngIf="movies" class="movie-list">
             <div class="movie" *ngFor="let movie of movies | paginate: { itemsPerPage: 8, currentPage: p }">
                 <figure class="movie-poster">
-                    <button *ngIf="isEdit" class="editBtn" mat-mini-fab (click)="onSelected(movie)" data-toggle="modal"
-                        data-target="#editModal">
+                    <button *ngIf="isEdit" class="editBtn" mat-mini-fab (click)="onSelected(movie)" data-toggle="modal" data-target="#editModal">
                         <span class="fas fa-edit"></span>
                     </button>
-                    <button *ngIf="isDelete" class="editBtn" mat-mini-fab (click)="onSelected(movie)"
-                        data-toggle="modal" data-target="#deleteModal">
+                    <button *ngIf="isDelete" class="editBtn" mat-mini-fab (click)="onSelected(movie)" data-toggle="modal" data-target="#deleteModal">
                         <span class="fa fa-trash-o"></span>
                     </button>
                     <button *ngIf="isApproved" class="editBtn" mat-mini-fab (click)="onBrowse(movie)">
@@ -108,24 +102,20 @@
 </div>
 
 <!-- Chang Password Modal -->
-<div class="modal fade" id="changePassModal" tabindex="-1" role="dialog" aria-labelledby="changePassModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="changePassModal" tabindex="-1" role="dialog" aria-labelledby="changePassModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <h3 class="modal-title">Change Password</h3>
             <form class="changePassForm">
                 <mat-form-field class="example-full-width">
-                    <input type="password" matInput name="newPass" id="newPass" [(ngModel)]="user.password"
-                        placeholder="New password">
+                    <input type="password" matInput name="newPass" id="newPass" [(ngModel)]="user.password" placeholder="New password">
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
-                    <input type="password" matInput name="repeatPass" id="repeatPass" [(ngModel)]="repeatPass"
-                        placeholder="Repeat password">
+                    <input type="password" matInput name="repeatPass" id="repeatPass" [(ngModel)]="repeatPass" placeholder="Repeat password">
                 </mat-form-field>
 
-                <button mat-flat-button class="changeBtnSubmit" color="primary" (click)="onChangePass()"
-                    [disabled]="!user.password || !repeatPass || user.password != repeatPass" data-dismiss="modal">
+                <button mat-flat-button class="changeBtnSubmit" color="primary" (click)="onChangePass()" [disabled]="!user.password || !repeatPass || user.password != repeatPass" data-dismiss="modal">
                     CHANGE</button>
             </form>
         </div>
@@ -139,17 +129,14 @@
             <h3 class="modal-title">Edit Movie</h3>
             <form class="editForm">
                 <mat-form-field class="example-full-width">
-                    <input matInput name="movieName" id="movieName" [(ngModel)]="movie.name" [value]="movie.name"
-                        placeholder="Movie name">
+                    <input matInput name="movieName" id="movieName" [(ngModel)]="movie.name" [value]="movie.name" placeholder="Movie name">
                 </mat-form-field>
 
                 <mat-form-field class="example-full-width">
-                    <input matInput name="descriptionMovie" id="descriptionMovie" [(ngModel)]="movie.description"
-                        [value]="movie.description" placeholder="Movie description">
+                    <input matInput name="descriptionMovie" id="descriptionMovie" [(ngModel)]="movie.description" [value]="movie.description" placeholder="Movie description">
                 </mat-form-field>
 
-                <button mat-flat-button class="changeBtnSubmit" color="primary" (click)="onEditMovie()"
-                    [disabled]="!movie.name || !movie.description" data-dismiss="modal">
+                <button mat-flat-button class="changeBtnSubmit" color="primary" (click)="onEditMovie()" [disabled]="!movie.name || !movie.description" data-dismiss="modal">
                     EDIT</button>
             </form>
         </div>
@@ -157,14 +144,12 @@
 </div>
 
 <!-- Delete Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <mat-card>
             <h4 class="modal-title">Delete Movie</h4>
             <div class="modal-content">
-                <button mat-flat-button class="changeBtnSubmit" color="warn" data-dismiss="modal"
-                    (click)="onDeleteMovie()">
+                <button mat-flat-button class="changeBtnSubmit" color="warn" data-dismiss="modal" (click)="onDeleteMovie()">
                     OK</button>
                 <button mat-flat-button class="changeBtnSubmit" color="primary" data-dismiss="modal">
                     CANCEL</button>
@@ -176,13 +161,12 @@
 <!-- Log Modal -->
 <div class="modal fade" id="logModal" tabindex="-1" role="dialog" aria-labelledby="logModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <mat-card>
+        <mat-card class="log-modal">
             <h4 class="modal-title">History</h4>
             <div class="modal-content">
                 <ul class="list-group" *ngFor="let log of logs">
                     <li class="list-group-item">
-                        <b>{{log.userEmail}}</b><br> {{log.action}} at <small
-                            style="color:blue">{{log.timestamp}}</small>
+                        <b>{{log.userEmail}}</b><br> {{log.action}} at <small style="color:blue">{{log.timestamp}}</small>
                     </li>
                 </ul>
             </div>
