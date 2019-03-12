@@ -2,49 +2,51 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from 'src/app/models/User';
 import { Supervisor } from 'src/app/models/Supervisor';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
+  private urlServer:string = environment.urlServer;
 
   constructor(private http: HttpClient) { }
 
   public login(data: any): Promise<any> {
-    return this.http.post('http://localhost:1010/auth/login'
+    return this.http.post(`${this.urlServer}/auth/login`
       , data).toPromise()
       .then(res => res)
       .catch(err => { throw err });
   }
 
   public async registerUser(data: User): Promise<boolean> {
-    return await this.http.post<boolean>('http://localhost:1010/auth/register', data).toPromise()
+    return await this.http.post<boolean>(`${this.urlServer}/auth/register`, data).toPromise()
       .then(res => res)
       .catch(err => { throw err });
   }
 
   public async identifyEmail(data: Supervisor): Promise<boolean> {
-    return await this.http.post<boolean>('http://localhost:1010/auth/forgetPassword',
+    return await this.http.post<boolean>(`${this.urlServer}/auth/forgetPassword`,
       data).toPromise()
       .then(res => res)
       .catch(err => { throw err });
   }
 
   public async identifyCode(data: any): Promise<boolean> {
-    return await this.http.post<boolean>('http://localhost:1010/auth/identifyCode',
+    return await this.http.post<boolean>(`${this.urlServer}/auth/identifyCode`,
       data).toPromise()
       .then(res => res)
       .catch(err => { throw err });
   }
 
   public async changePassword(password: string, identifyCode: string): Promise<boolean> {
-    return await this.http.post<boolean>('http://localhost:1010/auth/changePassword', { password, identifyCode }).toPromise()
+    return await this.http.post<boolean>(`${this.urlServer}/auth/changePassword`, { password, identifyCode }).toPromise()
       .then(res => res)
       .catch(err => { throw err });
   }
 
   public async logout(): Promise<any> {
-    return await this.http.post('http://localhost:1010/auth/logout', {}, {
+    return await this.http.post(`${this.urlServer}/auth/logout`, {}, {
       withCredentials: true
     }).toPromise()
       .then(res => res)

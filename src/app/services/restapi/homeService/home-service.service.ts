@@ -3,27 +3,29 @@ import { HttpClient } from '@angular/common/http';
 import { Movie } from 'src/app/models/Movie';
 import { User } from 'src/app/models/User';
 import { Comment } from 'src/app/models/Comment';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeServiceService {
+  private urlServer:string = environment.urlServer;
   constructor(private http: HttpClient) { }
 
   public async getAllMovies(): Promise<Array<Movie>> {
-    return await this.http.get<Array<Movie>>('http://localhost:1010/home/getAllMovies').toPromise()
+    return await this.http.get<Array<Movie>>(`${this.urlServer}/home/getAllMovies`).toPromise()
       .then(res => res)
       .catch(err => { throw err });
   }
 
   public async getLimit8Movies(): Promise<Array<Movie>> {
-    return await this.http.get<Array<Movie>>('http://localhost:1010/home/getLimit8Movies').toPromise()
+    return await this.http.get<Array<Movie>>(`${this.urlServer}/home/getLimit8Movies`).toPromise()
       .then(res => res)
       .catch(err => { throw err });
   }
 
   public async getMovie(url: string): Promise<Movie> {
-    return await this.http.get<Movie>(`http://localhost:1010/home/personal${url}`).toPromise()
+    return await this.http.get<Movie>(`${this.urlServer}/home/personal${url}`).toPromise()
       .then(res => res)
       .catch(err => {
         throw err;
@@ -31,7 +33,7 @@ export class HomeServiceService {
   }
 
   public async getMoviesByCategory(category: string): Promise<Array<Movie>> {
-    return await this.http.get<Array<Movie>>('http://localhost:1010/home/getMoviesByCategory', {
+    return await this.http.get<Array<Movie>>(`${this.urlServer}/home/getMoviesByCategory`, {
       params: {
         category: category
       }
@@ -41,15 +43,15 @@ export class HomeServiceService {
   }
 
   public async getAns(ask: string): Promise<string> {
-    return await this.http.post('http://localhost:1010/home/getAns', ask, {
-      responseType: 'text'
+    return await this.http.post(`${this.urlServer}/home/getAns`, ask, {
+      responseType: `text`
     }).toPromise()
       .then(res => res)
       .catch(err => { throw err });
   }
 
   public async getMoviesByCategoryAndName(movie: Movie): Promise<Array<Movie>> {
-    return await this.http.get<Array<Movie>>('http://localhost:1010/home/getMoviesByCategoryAndName', {
+    return await this.http.get<Array<Movie>>(`${this.urlServer}/home/getMoviesByCategoryAndName`, {
       params: {
         name: movie.name,
         category: movie.category
@@ -60,7 +62,7 @@ export class HomeServiceService {
   }
 
   public async getMoviesByName(movie: Movie): Promise<Array<Movie>> {
-    return await this.http.get<Array<Movie>>('http://localhost:1010/home/getMoviesByName', {
+    return await this.http.get<Array<Movie>>(`${this.urlServer}/home/getMoviesByName`, {
       params: {
         name: movie.name
       }
@@ -70,14 +72,14 @@ export class HomeServiceService {
   }
 
   public async getAllMoviesByUserId(url: string): Promise<Array<Movie>> {
-    return await this.http.get<Array<Movie>>(`http://localhost:1010/home/watch${url}`, {
+    return await this.http.get<Array<Movie>>(`${this.urlServer}/home/watch${url}`, {
     }).toPromise()
       .then(res => res)
       .catch(err => { throw err });
   }
 
   public async getAllCommentsByMovieId(movieId: string): Promise<Array<Comment>> {
-    return await this.http.get<Array<Comment>>('http://localhost:1010/home/getAllComments', {
+    return await this.http.get<Array<Comment>>(`${this.urlServer}/home/getAllComments`, {
       params: {
         movieId
       }
@@ -87,7 +89,7 @@ export class HomeServiceService {
   }
 
   public async getUserByUserId(userId: string): Promise<User> {
-    return await this.http.get<User>('http://localhost:1010/home/getUserByUserId', {
+    return await this.http.get<User>(`${this.urlServer}/home/getUserByUserId`, {
       params: {
         userId
       }
