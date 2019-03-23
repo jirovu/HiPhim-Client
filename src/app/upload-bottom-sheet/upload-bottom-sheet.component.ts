@@ -42,5 +42,6 @@ export class UploadBottomSheetComponent implements OnInit {
 
   onSelect(event) {
     this.movie.category = event.source.value;
+    this.movie.category = this.movie.category.toLocaleLowerCase();
   }
 }
